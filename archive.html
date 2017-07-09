@@ -1,0 +1,16 @@
+---
+layout: default
+title: Archive
+permalink: /archive/
+---
+
+<div class="posts">
+  {% for post in site.posts %}
+    <h2 class="post-title">
+      <a href="{{ site.baseurl }}{{ post.url }}">
+        {{ post.title }}
+      </a>
+      <span class="archive-post-date">{{ post.date | date: "%F" }}</span>
+    </h2>    
+  {% endfor %}
+</div>
