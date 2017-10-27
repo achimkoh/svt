@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>sws using three.js and tone.js</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<style>
+			body {
+				font-family: Monospace;
+				background-color: #f0f0f0;
+				margin: 0px;
+				overflow: hidden;
+			}
+		</style>
+	</head>
+	<body>
+		<script src="three.min.js"></script>
+		<script src="stats.min.js"></script>
+		<script>
+			let renderer, camera, scene;
+			let radius = 100, theta = 0;
+			let line;
+			let MAX_POINTS = 500;
+			let CUR_POINTS = 0;
+
+			let wire = new sonicWire;
+			// let sonicWires = [wire];
+			let mouse = new THREE.Vector2();
+
+			init();
+			animate();
+
+			function init() {
+
+				renderer = new THREE.WebGLRenderer();
+				renderer.setSize(window.innerWidth, window.innerHeight);
+				document.body.appendChild(renderer.domElement);
+
+				camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 1, 10000 );
+				camera.position.set(0, 0, 500);
+				camera.lookAt(new THREE.Vector3(0, 0, 0));
+
+				scene = new THREE.Scene();
+
+				//create a blue LineBasicMaterial
+				let material = new THREE.LineBasicMaterial({ color: 0x0000ff });
+				let geometry = new THREE.BufferGeometry();
+				// geometry.verticesNeedUpdate = true;
+				// geometry.vertices.push(new THREE.Vector3(-10, 0, 0));
+				// geometry.vertices.push(new THREE.Vector3(0, 10, 0));
+				// geometry.vertices.push(new THREE.Vector3(10, 0, 0));
+				let vertices = new Float32Array( MAX_POINTS * 3 );
+				geometry.addAttribute( 'position', new THREE.BufferAttribute( vertices, 3 ) );
+
+				// draw range
+				var drawCount = 500; // draw the first 2 points, only
+				geometry.setDrawRange( 0, drawCount );
+
+				line = new THREE.Line(geometry, material);
+
+				// wire.material = new THREE.LineBasicMaterial({ color: 0xffffff });
+				// wire.geometry = new THREE.Geometry();
+				// wire.geometry.vertices.push(new THREE.Vector3(-30, 20, 10));
+				// wire.geometry.vertices.push(new THREE.Vector3(-10, 20, 10));
+
+				scene.add(line);
+				// scene.add(new THREE.Line(wire.geometry, wire.material));
+				// wire.draw();
+
+				document.addEventListener( 'mousemove', onDocumentMouseMove, false );
+
+			}
+
+			function animate() {
+				requestAnimationFrame( animate );
+				line.geometry.attributes.position.needsUpdate = true;
+				render();
+				// stats.update();
+			}
+
+			function render() {
+				theta += 1;
+				// line.scale.x = Math.random() + 0.5;
+				line.rotation.y = THREE.Math.degToRad( theta );
+				// line.scale.z = Math.random() + 0.5;
+				// camera.position.x = radius * Math.sin( THREE.Math.degToRad( theta ) );
+				// camera.position.y = radius * Math.sin( THREE.Math.degToRad( theta ) );
+				// camera.position.z = radius * Math.cos( THREE.Math.degToRad( theta ) );
+				// camera.lookAt( scene.position );
+				// camera.updateMatrixWorld();
+				renderer.render(scene, camera);	
+			}	
+
+			function sonicWire() {
+				this.playhead = 0;
+				this.playing = true;
+				this.geometry = new THREE.Geometry();
+				this.material = new THREE.LineBasicMaterial({ color: 0x0000ff });
+
+				// each sonicWire() instance has a p5.Oscillator() in it
+				// this.osc = new p5.Oscillator();
+				// this.osc.setType(oscType);
+				// this.osc.freq(pitchFromVector(createVector(mouseX - width/2, mouseY - height/2)));
+				// 	this.osc.amp(0.1);
+				// this.osc.start(0.01);
+
+				// Add current cursor location to an array of vectors
+				this.points = [];
+				this.addPoint = function() {
+				    this.geometry.vertices.push(new THREE.Vector3(mouse.x, mouse.y, 0));
+				};
+
+				// Draw the line on the screen
+				this.draw = function() {
+					line = new THREE.Line(this.geometry, this.material);
+					scene.add(line);
+				};
+
+				this.update = function() {
+				};
+				
+				// rotate all vector points by one degree 
+				this.rotate = function(rot,x,y,z) {
+				};
+
+			}
+
+			function onDocumentMouseMove( event ) {
+				event.preventDefault();
+			}
+
+
+			document.onclick = function( event ) {
+				event.preventDefault();
+				wire.addPoint();
+
+				let vector = new THREE.Vector3();
+				vector.set(
+				    ( event.clientX / window.innerWidth ) * 2 - 1,
+				    - ( event.clientY / window.innerHeight ) * 2 + 1,
+				    0.5 );
+				vector.unproject( camera );
+
+				let dir = vector.sub( camera.position ).normalize();
+				let distance = - camera.position.z / dir.z;
+
+				let pos = camera.position.clone().add( dir.multiplyScalar( distance ) );
+
+				line.geometry.attributes.position.array[CUR_POINTS*3] = pos.x;					
+				line.geometry.attributes.position.array[CUR_POINTS*3+1] = pos.y;					
+				line.geometry.attributes.position.array[CUR_POINTS*3+2] = pos.z;					
+				CUR_POINTS++;
+
+				// sonicWires.push(new sonicWire());
+			}
+		</script>
+	</body>
+</html>
