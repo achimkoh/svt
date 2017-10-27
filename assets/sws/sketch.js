@@ -11,6 +11,7 @@ let wire;
 let spinner = [];
 
 let oscType = 'sine';
+let steps = 44;
 
 let anglePerFrame = 0.5;
 let direction = 1;
@@ -18,10 +19,10 @@ let loopCurrentPosition = 0;
 const crosshairSize = 10;
 
 let ampEnv = new Tone.AmplitudeEnvelope({
-	"attack": 0.1,
-	"decay": 0.2,
-	"sustain": 1.0,
-	"release": 0.8
+  "attack": 0.1,
+  "decay": 0.2,
+  "sustain": 1.0,
+  "release": 0.8
 }).toMaster();
 
 
@@ -36,13 +37,13 @@ function setup() {
 
 function draw() {
   loopCurrentPosition = (loopCurrentPosition + direction) % (360 / anglePerFrame); 
-  let segmentSize = map(loopCurrentPosition%(90 / anglePerFrame), 0, 90 / anglePerFrame, 0,crosshairSize);
+  let segmentSize = map(loopCurrentPosition%(45 / anglePerFrame), 0, 45 / anglePerFrame, 0,crosshairSize);
 
   background(230);
   noFill(); stroke(20); strokeWeight(1);
   line(width/2-crosshairSize,height/2,width/2+crosshairSize,height/2);
   line(width/2,height/2-crosshairSize,width/2,height/2+crosshairSize);
-	stroke(100,30,30,30);
+  stroke(100,30,30,30);
   for (let i=0; i<11; i++){
     line(0,i*height/11,width,i*height/11);
   }
@@ -80,7 +81,7 @@ function draw() {
     if (keyIsDown(LEFT_ARROW)) sonicWires[i].rotate(-1,0,0,1);
     if (keyIsDown(RIGHT_ARROW)) sonicWires[i].rotate(1,0,0,1);
   }
-  print(totalPoints + " " + frameRate());
+  // print(totalPoints + " " + frameRate());
 }
 
 // revisit this function (points move away slowly when not spinning)
@@ -99,7 +100,6 @@ function rotatePoint(inputVector, angle, rotX, rotY, rotZ) {
 
 function mousePressed() {
   wire = new sonicWire();
-  // wire.loopStart = loopCurrentPosition % (360 / anglePerFrame);
   sonicWires.push(wire);  // sonicWires[sonicWires.length - 1].play();
 }
 
@@ -114,19 +114,19 @@ function mouseReleased() {
 }
 
 function pitchFromVector(inputVector) {
-  let f = map(inputVector.y, height, 0, 0, 80);
-  return pow(2,(f+24)/12);
+  let f = map(inputVector.y, height/2, -height/2, 0, steps);
+  return pow(2,(f+70)/12);
 }
 
 function keyPressed() {
-	if (keyCode === BACKSPACE) {
+  if (keyCode === BACKSPACE) {
     sonicWires[sonicWires.length - 1].synth.triggerRelease();
     sonicWires[sonicWires.length - 1].synth.disconnect();
     sonicWires.pop();
   }
   
   if (key === ' ') {
-   	if (direction == 1) {
+    if (direction == 1) {
       direction = 0;
     } else {
       direction = 1;
@@ -147,15 +147,15 @@ function sonicWire() {
 
   // each sonicWire() instance has a Tone.Synth() in it
   this.synth = new Tone.Synth({
-			"oscillator" : {
-				"type" : oscType
-			},
-			"envelope" : {
-				"attack" : 0.1,
-				"decay" : 0.2,
-				"sustain" : 0.2,
-				"release" : 0.4
-			}
+      "oscillator" : {
+        "type" : oscType
+      },
+      "envelope" : {
+        "attack" : 0.1,
+        "decay" : 0.2,
+        "sustain" : 0.2,
+        "release" : 0.4
+      }
     }).toMaster();
   this.synth.volume = 0.1;
 
@@ -164,7 +164,16 @@ function sonicWire() {
   this.addPoint = function() {
     // do this only every 6 frames
     // if ((loopCurrentPosition-this.loopStart) % 2 == 0) {
-    	this.points.push(createVector(mouseX - width/2, mouseY - height/2, 0));
+    let posY = mouseY - height/2;
+    
+    if (this.points.length > 0) {
+      let approximateY = Math.floor(map(mouseY, 0, height, 0, steps*2))*height/(steps*2);
+      let easing = 0.5;
+      let prevY = this.points[this.points.length-1].y;
+      posY = (prevY)*(1-easing) + (approximateY - height/2)*easing;
+    } 
+    
+    this.points.push(createVector(mouseX - width/2, posY, 0));
     // }
   };
 
@@ -174,7 +183,7 @@ function sonicWire() {
       translate(width/2,height/2);
       // for (let i = 0; i < this.points.length-1; i++) {
       //   beginShape(); 
-      //   	 stroke(0-Math.sign(this.points[i].z)*150);
+      //     stroke(0-Math.sign(this.points[i].z)*150);
       //     strokeWeight(map(this.points[i].z, -width/2, width/2, 1, 8, true));
       //     vertex(this.points[i].x, this.points[i].y);
       //     vertex(this.points[i+1].x, this.points[i+1].y);
@@ -192,7 +201,7 @@ function sonicWire() {
               vertex(this.points[i*6+j].x, this.points[i*6+j].y);
             }
           }
-        	if ((i+1)*6 < this.points.length) {
+          if ((i+1)*6 < this.points.length) {
             vertex(this.points[(i+1)*6].x, this.points[(i+1)*6].y);
           }
         endShape();
@@ -216,8 +225,8 @@ function sonicWire() {
       // draw a playhead
       push();
         translate(width/2,height/2);
-      	fill(250,50,50,200);
-      	noStroke();
+        fill(250,50,50,200);
+        noStroke();
         ellipse(this.points[this.playhead].x,this.points[this.playhead].y,20);
       pop();
 
