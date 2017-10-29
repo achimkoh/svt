@@ -13,26 +13,38 @@ let spinner = [];
 let oscType = 'sine';
 let steps = 44;
 
+let front;
+
 let anglePerFrame = 0.5;
 let direction = 1;
 let loopCurrentPosition = 0;
 const crosshairSize = 10;
 
 let ampEnv = new Tone.AmplitudeEnvelope({
-  "attack": 0.1,
-  "decay": 0.2,
-  "sustain": 1.0,
-  "release": 0.8
+	"attack": 0.1,
+	"decay": 0.2,
+	"sustain": 1.0,
+	"release": 0.8
 }).toMaster();
 
 
 function setup() { 
   createCanvas(600, 400);
+  noFill();
+  front = createGraphics(600,400);
+  front.noFill();
+  front.scale(0.5); // need to fix pixeldensity https://github.com/processing/p5.js/issues/2149
   cursor(CROSS);
   frameRate(60);
-  
   spinner.push(createVector(-100,30,0));
   spinner.push(createVector(100,30,0));
+
+  // in sonicWire.show() we divide each wire into sets of 6 vertices
+  // (goal: to change stroke and strokeWeight based on z coordinate,
+  // and also not to have beginShape and endShape for every segment)
+  // for some reason the segments can be very pointy. the next options will fix that
+  strokeJoin(ROUND);
+  front.strokeJoin(ROUND);
 } 
 
 function draw() {
@@ -40,14 +52,32 @@ function draw() {
   let segmentSize = map(loopCurrentPosition%(45 / anglePerFrame), 0, 45 / anglePerFrame, 0,crosshairSize);
 
   background(230);
-  noFill(); stroke(20); strokeWeight(1);
-  line(width/2-crosshairSize,height/2,width/2+crosshairSize,height/2);
-  line(width/2,height/2-crosshairSize,width/2,height/2+crosshairSize);
-  stroke(100,30,30,30);
+  front.clear();
+  strokeWeight(1); stroke(100,30,30,30);
   for (let i=0; i<11; i++){
     line(0,i*height/11,width,i*height/11);
   }
-  stroke(250,50,50,255); strokeWeight(3);
+
+  // do the main thing: see sonicWire() definition for details
+  if (mouseIsPressed) {
+    wire.addPoint();
+  }
+  
+  let totalPoints = 0;
+  for (let i=0; i < sonicWires.length; i++) {
+    sonicWires[i].update();
+    sonicWires[i].show();
+    totalPoints += sonicWires[i].points.length;
+    if (keyIsDown(UP_ARROW)) sonicWires[i].rotate(1,1,0,0);
+    if (keyIsDown(DOWN_ARROW)) sonicWires[i].rotate(-1,1,0,0);
+    if (keyIsDown(LEFT_ARROW)) sonicWires[i].rotate(-1,0,0,1);
+    if (keyIsDown(RIGHT_ARROW)) sonicWires[i].rotate(1,0,0,1);
+  }
+  
+  strokeWeight(1);stroke(20);
+  line(width/2-crosshairSize,height/2,width/2+crosshairSize,height/2);
+  line(width/2,height/2-crosshairSize,width/2,height/2+crosshairSize);
+  stroke(250,50,50,220); strokeWeight(3);
   line(width/2-segmentSize,height/2,width/2+segmentSize,height/2);
   line(width/2,height/2-segmentSize,width/2,height/2+segmentSize);
   
@@ -66,22 +96,10 @@ function draw() {
     rotatePoint(spinner[i], anglePerFrame, 0, direction, 0);
   }
   
-  // do the main thing: see sonicWire() definition for details
-  if (mouseIsPressed) {
-    wire.addPoint();
-  }
+
   
-  let totalPoints = 0;
-  for (let i=0; i < sonicWires.length; i++) {
-    sonicWires[i].update();
-    sonicWires[i].show();
-    totalPoints += sonicWires[i].points.length;
-    if (keyIsDown(UP_ARROW)) sonicWires[i].rotate(1,1,0,0);
-    if (keyIsDown(DOWN_ARROW)) sonicWires[i].rotate(-1,1,0,0);
-    if (keyIsDown(LEFT_ARROW)) sonicWires[i].rotate(-1,0,0,1);
-    if (keyIsDown(RIGHT_ARROW)) sonicWires[i].rotate(1,0,0,1);
-  }
-  // print(totalPoints + " " + frameRate());
+  image(front, 0, 0);
+  print(totalPoints + "  " + frameRate());
 }
 
 // revisit this function (points move away slowly when not spinning)
@@ -119,14 +137,14 @@ function pitchFromVector(inputVector) {
 }
 
 function keyPressed() {
-  if (keyCode === BACKSPACE) {
+	if (keyCode === BACKSPACE) {
     sonicWires[sonicWires.length - 1].synth.triggerRelease();
     sonicWires[sonicWires.length - 1].synth.disconnect();
     sonicWires.pop();
   }
   
   if (key === ' ') {
-    if (direction == 1) {
+   	if (direction == 1) {
       direction = 0;
     } else {
       direction = 1;
@@ -147,15 +165,15 @@ function sonicWire() {
 
   // each sonicWire() instance has a Tone.Synth() in it
   this.synth = new Tone.Synth({
-      "oscillator" : {
-        "type" : oscType
-      },
-      "envelope" : {
-        "attack" : 0.1,
-        "decay" : 0.2,
-        "sustain" : 0.2,
-        "release" : 0.4
-      }
+			"oscillator" : {
+				"type" : oscType
+			},
+			"envelope" : {
+				"attack" : 0.1,
+				"decay" : 0.2,
+				"sustain" : 0.2,
+				"release" : 0.4
+			}
     }).toMaster();
   this.synth.volume = 0.1;
 
@@ -168,7 +186,7 @@ function sonicWire() {
     
     if (this.points.length > 0) {
       let approximateY = Math.floor(map(mouseY, 0, height, 0, steps*2))*height/(steps*2);
-      let easing = 0.5;
+	    let easing = 0.5;
       let prevY = this.points[this.points.length-1].y;
       posY = (prevY)*(1-easing) + (approximateY - height/2)*easing;
     } 
@@ -179,34 +197,64 @@ function sonicWire() {
 
   // Draw the line on the screen
   this.show = function() {
-    push();
-      translate(width/2,height/2);
       // for (let i = 0; i < this.points.length-1; i++) {
-      //   beginShape(); 
-      //     stroke(0-Math.sign(this.points[i].z)*150);
-      //     strokeWeight(map(this.points[i].z, -width/2, width/2, 1, 8, true));
-      //     vertex(this.points[i].x, this.points[i].y);
-      //     vertex(this.points[i+1].x, this.points[i+1].y);
-      //   endShape();
+      //   if (Math.sign(this.points[i].z) >= 0) {
+      //     front.beginShape(); 
+      //     	front.stroke(0,0,255);
+      //       // front.stroke(0-Math.sign(this.points[i].z)*150);
+      //       front.strokeWeight(map(this.points[i].z, -width/2, width/2, 1, 8, true));
+      //     	front.strokeWeight(15);
+      //       front.vertex((this.points[i].x+width/2), (this.points[i].y+height/2));
+      //       front.vertex((this.points[i+1].x+width/2), (this.points[i+1].y+height/2));
+      //     endShape();
+      //   } else {
+      //     beginShape(); 
+      //       stroke(0-Math.sign(this.points[i].z)*150);
+      //       strokeWeight(map(this.points[i].z, -width/2, width/2, 1, 8, true));
+      //       vertex(this.points[i].x+width/2, this.points[i].y+height/2);
+      //       vertex(this.points[i+1].x+width/2, this.points[i+1].y+height/2);
+      //     endShape();
+      //   }
+      // }
       // }
     // beginning/ending shape every few points boosts performance
     // framerate starts dropping at ~2500 points
     // (when doing it at every point, ~1000 points )
+    
       for (let i=0; i < this.points.length/6; i++) {
-        stroke(0-Math.sign(this.points[i*6].z)*150);
-        strokeWeight(map(this.points[i*6].z, -width/2, width/2, 1, 8, true));
-        beginShape(); 
-          for (let j=0; j < 6; j++) {
-            if (i*6+j < this.points.length) {
-              vertex(this.points[i*6+j].x, this.points[i*6+j].y);
+        if (Math.sign(this.points[i*6].z) >= 0) {
+          // front.stroke(0,0,255);
+          front.stroke(0-Math.sign(this.points[i*6].z)*150);
+          front.strokeWeight(map(this.points[i*6].z, -width/2, width/2, 1, 8, true));
+          front.beginShape(); 
+            for (let j=0; j < 6; j++) {
+              if (i*6+j < this.points.length) {
+                front.vertex((this.points[i*6+j].x+width/2), (this.points[i*6+j].y+height/2));
+              }
             }
-          }
-          if ((i+1)*6 < this.points.length) {
-            vertex(this.points[(i+1)*6].x, this.points[(i+1)*6].y);
-          }
-        endShape();
+            if ((i+1)*6 < this.points.length) {
+              front.vertex((this.points[(i+1)*6].x+width/2), (this.points[(i+1)*6].y+height/2));
+            }
+          front.endShape();
+          // front.pop();
+        } else {
+          // push();
+          // translate(width/2,height/2);
+          stroke(0-Math.sign(this.points[i*6].z)*150);
+          strokeWeight(map(this.points[i*6].z, -width/2, width/2, 1, 8, true));
+          beginShape(); 
+            for (let j=0; j < 6; j++) {
+              if (i*6+j < this.points.length) {
+                vertex(this.points[i*6+j].x+width/2, this.points[i*6+j].y+height/2);
+              }
+            }
+            if ((i+1)*6 < this.points.length) {
+              vertex(this.points[(i+1)*6].x+width/2, this.points[(i+1)*6].y+height/2);
+            }
+          endShape();
+          // pop();
+        }
       }
-    pop();
 
   };
 
@@ -225,8 +273,8 @@ function sonicWire() {
       // draw a playhead
       push();
         translate(width/2,height/2);
-        fill(250,50,50,200);
-        noStroke();
+      	fill(250,50,50,200);
+      	noStroke();
         ellipse(this.points[this.playhead].x,this.points[this.playhead].y,20);
       pop();
 
