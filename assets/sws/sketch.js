@@ -6,12 +6,19 @@ this version is based on an openFrameworks port I worked on while attending the 
 that port is here: https://github.com/achimkoh/sfpcSpring2015/tree/master/sonicWireSculptorCopy
 */
 
+/* TODO
+[ ] rotatepoint
+[ ] button for toggle start/stop
+[ ] drag/accelerometer/etc control rotation
+[ ] button for delete recent line
+[ ] 
+[ ] 
+[ ] share button?
+*/
+
 let sonicWires = [];
 let wire;
 let spinner = [];
-
-let oscType = 'sine';
-let steps = 44;
 
 let front;
 
@@ -20,20 +27,20 @@ let direction = 1;
 let loopCurrentPosition = 0;
 const crosshairSize = 10;
 
-let ampEnv = new Tone.AmplitudeEnvelope({
-	"attack": 0.1,
-	"decay": 0.2,
-	"sustain": 1.0,
-	"release": 0.8
-}).toMaster();
+let oscType = 'sine';
+let steps = 44;
 
+let button;
 
 function setup() { 
   createCanvas(600, 400);
   noFill();
   front = createGraphics(600,400);
+  // unlike default p5 canvas, a new graphic buffer doesn't deal well 
+  // w/ both standard and retina displays. the line below makes it do so.
+  front.scale(1 / window.devicePixelRatio); 
   front.noFill();
-  front.scale(0.5); // need to fix pixeldensity https://github.com/processing/p5.js/issues/2149
+  
   cursor(CROSS);
   frameRate(60);
   spinner.push(createVector(-100,30,0));
@@ -45,24 +52,32 @@ function setup() {
   // for some reason the segments can be very pointy. the next options will fix that
   strokeJoin(ROUND);
   front.strokeJoin(ROUND);
+  
+  // button = createButton('start/stop');
+  // button.position(0,0);
+  // button.mousePressed(toggleRotate);
 } 
 
-function draw() {
+function draw() { 
+  // keep track of current position in loop
   loopCurrentPosition = (loopCurrentPosition + direction) % (360 / anglePerFrame); 
   let segmentSize = map(loopCurrentPosition%(45 / anglePerFrame), 0, 45 / anglePerFrame, 0,crosshairSize);
 
   background(230);
-  front.clear();
+  front.clear(); // not front.background() because then it draws over everything
+
+  // horizontal lines
   strokeWeight(1); stroke(100,30,30,30);
   for (let i=0; i<11; i++){
     line(0,i*height/11,width,i*height/11);
   }
 
-  // do the main thing: see sonicWire() definition for details
+  // create new line
   if (mouseIsPressed) {
     wire.addPoint();
   }
   
+  // do the main thing: see sonicWire() definition for details
   let totalPoints = 0;
   for (let i=0; i < sonicWires.length; i++) {
     sonicWires[i].update();
@@ -74,6 +89,7 @@ function draw() {
     if (keyIsDown(RIGHT_ARROW)) sonicWires[i].rotate(1,0,0,1);
   }
   
+  // draw center crosshair
   strokeWeight(1);stroke(20);
   line(width/2-crosshairSize,height/2,width/2+crosshairSize,height/2);
   line(width/2,height/2-crosshairSize,width/2,height/2+crosshairSize);
@@ -82,43 +98,47 @@ function draw() {
   line(width/2,height/2-segmentSize,width/2,height/2+segmentSize);
   
   // draw spinner. 
-  // TODO: ellipse should rotate as well?
   strokeWeight(1);
   for (let i=0; i < spinner.length; i++) {
     push();
-    translate(width/2, height/2);
-    let zSign = Math.sign(spinner[i].z);
-    stroke(250,30,30,100+zSign*50);
-    fill(250,30,30,120+zSign*50);
-    line(spinner[i].x, spinner[i].y, 0, 0);
-    if (i == 1) ellipse(spinner[i].x, spinner[i].y, 5);
+      translate(width/2, height/2);
+      let zSign = Math.sign(spinner[i].z);
+      stroke(250,30,30,100+zSign*50);
+      fill(250,30,30,120+zSign*50);
+      line(spinner[i].x, spinner[i].y, 0, 0);
+      // draw the round thingy at one end
+      if (i == 1) {
+        fill(250,30,30,200+zSign*50);
+        let z = map(spinner[i].z, -100, 100, 3, 7);
+        ellipse(spinner[i].x, spinner[i].y+0.5, z*(Math.abs(Math.cos(PI*spinner[1].z/200))), z);
+      }
     pop();
     rotatePoint(spinner[i], anglePerFrame, 0, direction, 0);
   }
   
-
-  
+  // wire segments with z >= 0 are drawn later, to maintain perspective
   image(front, 0, 0);
   print(totalPoints + "  " + frameRate());
 }
 
-// revisit this function (points move away slowly when not spinning)
+// revisit this because all points are drawn on the same y position
+// regardless of z coordinate
 function rotatePoint(inputVector, angle, rotX, rotY, rotZ) {
-  if (rotX == 0 && rotY == 0 && rotZ == 0) return;
+  if ((rotX == 0 && rotY == 0 && rotZ == 0) || angle == 0) return;
   let theta = radians(angle);
   let x = inputVector.x;
   let y = inputVector.y;
   let z = inputVector.z;
-  let rx = rotX*(rotX*x + rotY*y + rotZ*z)*(1 - cos(theta)) + x*cos(theta) + (-rotZ*y + rotY*z)*sin(theta);
-  let ry = rotY*(rotX*x + rotY*y + rotZ*z)*(1 - cos(theta)) + y*cos(theta) + ( rotZ*x - rotX*z)*sin(theta);
-  let rz = rotZ*(rotX*x + rotY*y + rotZ*z)*(1 - cos(theta)) + z*cos(theta) + (-rotY*x + rotX*y)*sin(theta);
+  let rx = rotX*(rotX*x + rotY*y + rotZ*z)*(1 - Math.cos(theta)) + x*Math.cos(theta) + (-rotZ*y + rotY*z)*Math.sin(theta);
+  let ry = rotY*(rotX*x + rotY*y + rotZ*z)*(1 - Math.cos(theta)) + y*Math.cos(theta) + ( rotZ*x - rotX*z)*Math.sin(theta);
+  let rz = rotZ*(rotX*x + rotY*y + rotZ*z)*(1 - Math.cos(theta)) + z*Math.cos(theta) + (-rotY*x + rotX*y)*Math.sin(theta);
 
   inputVector.set(rx,ry,rz);
 }
 
 function mousePressed() {
   wire = new sonicWire();
-  sonicWires.push(wire);  // sonicWires[sonicWires.length - 1].play();
+  sonicWires.push(wire); 
 }
 
 function mouseReleased() {
@@ -137,24 +157,28 @@ function pitchFromVector(inputVector) {
 }
 
 function keyPressed() {
-	if (keyCode === BACKSPACE) {
+  if (keyCode === BACKSPACE) {
     sonicWires[sonicWires.length - 1].synth.triggerRelease();
     sonicWires[sonicWires.length - 1].synth.disconnect();
     sonicWires.pop();
   }
   
   if (key === ' ') {
-   	if (direction == 1) {
-      direction = 0;
-    } else {
-      direction = 1;
-    }
+    toggleRotate();
   }
   
   if (keyCode === ENTER) {
     print(sonicWires.length);
   }
 
+}
+
+function toggleRotate() {
+  if (direction == 1) {
+    direction = 0;
+  } else {
+    direction = 1;
+  }
 }
 
 function sonicWire() {
@@ -165,97 +189,67 @@ function sonicWire() {
 
   // each sonicWire() instance has a Tone.Synth() in it
   this.synth = new Tone.Synth({
-			"oscillator" : {
-				"type" : oscType
-			},
-			"envelope" : {
-				"attack" : 0.1,
-				"decay" : 0.2,
-				"sustain" : 0.2,
-				"release" : 0.4
-			}
+      "oscillator" : {
+        "type" : oscType
+      },
+      "envelope" : {
+        "attack" : 0.1,
+        "decay" : 0.2,
+        "sustain" : 0.2,
+        "release" : 0.4
+      }
     }).toMaster();
   this.synth.volume = 0.1;
 
   // Add current cursor location to an array of vectors
   this.points = [];
   this.addPoint = function() {
-    // do this only every 6 frames
-    // if ((loopCurrentPosition-this.loopStart) % 2 == 0) {
-    let posY = mouseY - height/2;
-    
+    let posY = mouseY - height/2;    
     if (this.points.length > 0) {
-      let approximateY = Math.floor(map(mouseY, 0, height, 0, steps*2))*height/(steps*2);
-	    let easing = 0.5;
+      // find the closest semitone (quartertone? not sure)
+      let approximateY = Math.round(map(mouseY, 0, height, 0, steps*2))*height/(steps*2);
+      // apply light easing towards that closest tone
+      let easing = 0.2;
       let prevY = this.points[this.points.length-1].y;
       posY = (prevY)*(1-easing) + (approximateY - height/2)*easing;
     } 
-    
     this.points.push(createVector(mouseX - width/2, posY, 0));
-    // }
   };
 
   // Draw the line on the screen
   this.show = function() {
-      // for (let i = 0; i < this.points.length-1; i++) {
-      //   if (Math.sign(this.points[i].z) >= 0) {
-      //     front.beginShape(); 
-      //     	front.stroke(0,0,255);
-      //       // front.stroke(0-Math.sign(this.points[i].z)*150);
-      //       front.strokeWeight(map(this.points[i].z, -width/2, width/2, 1, 8, true));
-      //     	front.strokeWeight(15);
-      //       front.vertex((this.points[i].x+width/2), (this.points[i].y+height/2));
-      //       front.vertex((this.points[i+1].x+width/2), (this.points[i+1].y+height/2));
-      //     endShape();
-      //   } else {
-      //     beginShape(); 
-      //       stroke(0-Math.sign(this.points[i].z)*150);
-      //       strokeWeight(map(this.points[i].z, -width/2, width/2, 1, 8, true));
-      //       vertex(this.points[i].x+width/2, this.points[i].y+height/2);
-      //       vertex(this.points[i+1].x+width/2, this.points[i+1].y+height/2);
-      //     endShape();
-      //   }
-      // }
-      // }
-    // beginning/ending shape every few points boosts performance
+    // beginning/ending shape every 6 points boosts performance
     // framerate starts dropping at ~2500 points
     // (when doing it at every point, ~1000 points )
-    
-      for (let i=0; i < this.points.length/6; i++) {
-        if (Math.sign(this.points[i*6].z) >= 0) {
-          // front.stroke(0,0,255);
-          front.stroke(0-Math.sign(this.points[i*6].z)*150);
-          front.strokeWeight(map(this.points[i*6].z, -width/2, width/2, 1, 8, true));
-          front.beginShape(); 
-            for (let j=0; j < 6; j++) {
-              if (i*6+j < this.points.length) {
-                front.vertex((this.points[i*6+j].x+width/2), (this.points[i*6+j].y+height/2));
-              }
+    for (let i=0; i < this.points.length/6; i++) {
+      if (Math.sign(this.points[i*6].z) >= 0) {
+        front.stroke(0-Math.sign(this.points[i*6].z)*150);
+        front.strokeWeight(map(this.points[i*6].z, -width/2, width/2, 1, 8, true));
+        front.beginShape(); 
+          for (let j=0; j < 6; j++) {
+            if (i*6+j < this.points.length) {
+              front.vertex((this.points[i*6+j].x+width/2), (this.points[i*6+j].y+height/2));
             }
-            if ((i+1)*6 < this.points.length) {
-              front.vertex((this.points[(i+1)*6].x+width/2), (this.points[(i+1)*6].y+height/2));
+          }
+          if ((i+1)*6 < this.points.length) {
+            front.vertex((this.points[(i+1)*6].x+width/2), (this.points[(i+1)*6].y+height/2));
+          }
+        front.endShape();
+      } else {
+        stroke(0-Math.sign(this.points[i*6].z)*150);
+        strokeWeight(map(this.points[i*6].z, -width/2, width/2, 1, 8, true));
+        beginShape(); 
+          for (let j=0; j < 6; j++) {
+            if (i*6+j < this.points.length) {
+              vertex(this.points[i*6+j].x+width/2, this.points[i*6+j].y+height/2);
             }
-          front.endShape();
-          // front.pop();
-        } else {
-          // push();
-          // translate(width/2,height/2);
-          stroke(0-Math.sign(this.points[i*6].z)*150);
-          strokeWeight(map(this.points[i*6].z, -width/2, width/2, 1, 8, true));
-          beginShape(); 
-            for (let j=0; j < 6; j++) {
-              if (i*6+j < this.points.length) {
-                vertex(this.points[i*6+j].x+width/2, this.points[i*6+j].y+height/2);
-              }
-            }
-            if ((i+1)*6 < this.points.length) {
-              vertex(this.points[(i+1)*6].x+width/2, this.points[(i+1)*6].y+height/2);
-            }
-          endShape();
-          // pop();
-        }
+          }
+          if ((i+1)*6 < this.points.length) {
+            vertex(this.points[(i+1)*6].x+width/2, this.points[(i+1)*6].y+height/2);
+          }
+        endShape();
       }
-
+    }
   };
 
   this.update = function() {
@@ -273,8 +267,8 @@ function sonicWire() {
       // draw a playhead
       push();
         translate(width/2,height/2);
-      	fill(250,50,50,200);
-      	noStroke();
+        fill(250,50,50,200);
+        noStroke();
         ellipse(this.points[this.playhead].x,this.points[this.playhead].y,20);
       pop();
 
@@ -288,7 +282,7 @@ function sonicWire() {
     this.rotate(anglePerFrame, 0, direction, 0);
   };
   
-  // rotate all vector points by one degree 
+  // rotate all vector points by a given amount 
   this.rotate = function(rot,x,y,z) {
     for (let i=0; i<this.points.length; i++) {
       rotatePoint(this.points[i], rot, x, y, z);
