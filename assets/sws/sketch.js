@@ -27,19 +27,39 @@ let direction = 1;
 let loopCurrentPosition = 0;
 const crosshairSize = 10;
 
-let oscType = 'sine';
+let oscType = 'triangle';
 let steps = 44;
 
 let button;
+let limiter;
 
 function setup() { 
-  createCanvas(600, 400);
+  limiter = new Tone.Limiter(-3).toMaster();
+  
+  let cnv = createCanvas(600, 400);
   noFill();
   front = createGraphics(600,400);
   // unlike default p5 canvas, a new graphic buffer doesn't deal well 
   // w/ both standard and retina displays. the line below makes it do so.
   front.scale(1 / window.devicePixelRatio); 
   front.noFill();
+  cnv.mousePressed(function() {
+    wire = new sonicWire();
+    wire.recording = true;
+    sonicWires.push(wire); 
+  });
+  cnv.mouseReleased(function() {
+    wire.recording = false;
+    // if too few points were recorded to consider what you just drew as a line, below code will discard it
+    if (sonicWires[sonicWires.length - 1].points.length < 2) {
+      sonicWires[sonicWires.length - 1].panner.dispose();
+      sonicWires[sonicWires.length - 1].synth.triggerRelease();
+      sonicWires[sonicWires.length - 1].synth.dispose();
+      sonicWires.pop();
+      print("Line was too short and not recorded")
+    }
+  });
+  
   
   cursor(CROSS);
   frameRate(60);
@@ -73,15 +93,16 @@ function draw() {
   }
 
   // create new line
-  if (mouseIsPressed) {
+  // if (mouseIsPressed) {
+  if (wire && wire.recording) {
     wire.addPoint();
   }
   
   // do the main thing: see sonicWire() definition for details
   let totalPoints = 0;
   for (let i=0; i < sonicWires.length; i++) {
-    sonicWires[i].update();
     sonicWires[i].show();
+    sonicWires[i].update();
     totalPoints += sonicWires[i].points.length;
     if (keyIsDown(UP_ARROW)) sonicWires[i].rotate(1,1,0,0);
     if (keyIsDown(DOWN_ARROW)) sonicWires[i].rotate(-1,1,0,0);
@@ -118,7 +139,7 @@ function draw() {
   
   // wire segments with z >= 0 are drawn later, to maintain perspective
   image(front, 0, 0);
-  print(totalPoints + "  " + frameRate());
+  // print(totalPoints + "  " + frameRate());
 }
 
 // revisit this because all points are drawn on the same y position
@@ -136,20 +157,20 @@ function rotatePoint(inputVector, angle, rotX, rotY, rotZ) {
   inputVector.set(rx,ry,rz);
 }
 
-function mousePressed() {
-  wire = new sonicWire();
-  sonicWires.push(wire); 
-}
+// function mousePressed() {
+//   wire = new sonicWire();
+//   sonicWires.push(wire); 
+// }
 
-function mouseReleased() {
-  // if too few points were recorded to consider what you just drew as a line, below code will discard it
-  if (sonicWires[sonicWires.length - 1].points.length < 2) {
-    sonicWires[sonicWires.length - 1].synth.triggerRelease();
-    sonicWires[sonicWires.length - 1].synth.disconnect();
-    sonicWires.pop();
-    print("Line was too short and not recorded")
-  }
-}
+// function mouseReleased() {
+//   // if too few points were recorded to consider what you just drew as a line, below code will discard it
+//   if (sonicWires[sonicWires.length - 1].points.length < 2) {
+//     sonicWires[sonicWires.length - 1].synth.triggerRelease();
+//     sonicWires[sonicWires.length - 1].synth.disconnect();
+//     sonicWires.pop();
+//     print("Line was too short and not recorded")
+//   }
+// }
 
 function pitchFromVector(inputVector) {
   let f = map(inputVector.y, height/2, -height/2, 0, steps);
@@ -188,17 +209,18 @@ function sonicWire() {
   this.playing = true;
 
   // each sonicWire() instance has a Tone.Synth() in it
+  this.panner = new Tone.Panner().connect(limiter);
   this.synth = new Tone.Synth({
       "oscillator" : {
         "type" : oscType
       },
       "envelope" : {
-        "attack" : 0.1,
-        "decay" : 0.2,
+        "attack" : 0.2,
+        "decay" : 1,
         "sustain" : 0.2,
-        "release" : 0.4
+        "release" : 0.2
       }
-    }).toMaster();
+    }).connect(this.panner);
   this.synth.volume = 0.1;
 
   // Add current cursor location to an array of vectors
@@ -222,17 +244,20 @@ function sonicWire() {
     // framerate starts dropping at ~2500 points
     // (when doing it at every point, ~1000 points )
     for (let i=0; i < this.points.length/6; i++) {
+      // use z value to move y position and fake a 3d perspective
+      let zMapped = map(this.points[i*6].z, -width/2, width/2, 0.9, 1.1, true);
+
       if (Math.sign(this.points[i*6].z) >= 0) {
         front.stroke(0-Math.sign(this.points[i*6].z)*150);
         front.strokeWeight(map(this.points[i*6].z, -width/2, width/2, 1, 8, true));
         front.beginShape(); 
           for (let j=0; j < 6; j++) {
             if (i*6+j < this.points.length) {
-              front.vertex((this.points[i*6+j].x+width/2), (this.points[i*6+j].y+height/2));
+              front.vertex(this.points[i*6+j].x+width/2, this.points[i*6+j].y*zMapped+height/2);
             }
           }
           if ((i+1)*6 < this.points.length) {
-            front.vertex((this.points[(i+1)*6].x+width/2), (this.points[(i+1)*6].y+height/2));
+            front.vertex(this.points[(i+1)*6].x+width/2, this.points[(i+1)*6].y*zMapped+height/2);
           }
         front.endShape();
       } else {
@@ -241,11 +266,11 @@ function sonicWire() {
         beginShape(); 
           for (let j=0; j < 6; j++) {
             if (i*6+j < this.points.length) {
-              vertex(this.points[i*6+j].x+width/2, this.points[i*6+j].y+height/2);
+              vertex(this.points[i*6+j].x+width/2, this.points[i*6+j].y*zMapped+height/2);
             }
           }
           if ((i+1)*6 < this.points.length) {
-            vertex(this.points[(i+1)*6].x+width/2, this.points[(i+1)*6].y+height/2);
+            vertex(this.points[(i+1)*6].x+width/2, this.points[(i+1)*6].y*zMapped+height/2);
           }
         endShape();
       }
@@ -266,11 +291,17 @@ function sonicWire() {
     if (this.playing) {
       // draw a playhead
       push();
+        let zMapped = map(this.points[this.playhead].z, -width/2, width/2, 0.9, 1.1, true);
         translate(width/2,height/2);
-        fill(250,50,50,200);
+        fill(250,50,50);
         noStroke();
-        ellipse(this.points[this.playhead].x,this.points[this.playhead].y,20);
+        ellipse(this.points[this.playhead].x,this.points[this.playhead].y*zMapped,10*zMapped*zMapped*zMapped);
       pop();
+      
+      print(this.points[this.playhead].z);
+      
+      // pan the synth according to x position
+      this.panner.pan.value = map(this.points[this.playhead].x, -width/2, width/2, -0.5, 0.5, true);
 
       // play the oscillator according to y position
       this.synth.triggerAttack(
