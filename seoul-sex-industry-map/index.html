@@ -116,7 +116,6 @@ map.on('load', function() {
             }
         }
     });
-
     map.addLayer({
         "id": "clinics-point",
         "type": "circle",
@@ -144,7 +143,33 @@ map.on('load', function() {
             }
         }
     });
-
+    map.addLayer({
+        "id": "danlan-point",
+        "type": "circle",
+        "source": "danlan",
+        "minzoom": 8,
+        "paint": {
+            "circle-radius": {
+                "base": 1,
+                "stops": [
+                    [10, 1],
+                    [12, 3],
+                    [16, 5],
+                    [22, 7]
+                ]
+            },
+            "circle-color": "#a6cee3",
+            "circle-stroke-color": "white",
+            "circle-stroke-width": 1,
+            //Transition from heatmap to circle layer by zoom level
+            "circle-opacity": {
+                "stops": [
+                    [7, 0.5],
+                    [13, 1]
+                ]
+            }
+        }
+    });
     map.addLayer({
         "id": "yuheung-point",
         "type": "circle",
@@ -173,35 +198,8 @@ map.on('load', function() {
         }
     });
 
-    map.addLayer({
-        "id": "danlan-point",
-        "type": "circle",
-        "source": "danlan",
-        "minzoom": 8,
-        "paint": {
-            "circle-radius": {
-                "base": 1,
-                "stops": [
-                    [10, 1],
-                    [12, 3],
-                    [16, 5],
-                    [22, 7]
-                ]
-            },
-            "circle-color": "#a6cee3",
-            "circle-stroke-color": "white",
-            "circle-stroke-width": 1,
-            //Transition from heatmap to circle layer by zoom level
-            "circle-opacity": {
-                "stops": [
-                    [7, 0.5],
-                    [13, 1]
-                ]
-            }
-        }
-    });
-
     let toggleableLayerIds = [ 'loans-point', 'clinics-point', 'danlan-point', 'yuheung-point' ];
+    let toggleableLayerTitles = [ '대부업체', '성형 의료기관', '단란주점', '유흥업소' ];
 
     for (let i = 0; i < toggleableLayerIds.length; i++) {
         let id = toggleableLayerIds[i];
@@ -209,10 +207,10 @@ map.on('load', function() {
         let link = document.createElement('a');
         link.href = '#';
         link.className = 'active';
-        link.textContent = id;
+        link.textContent = toggleableLayerTitles[i];
 
         link.onclick = function (e) {
-            let clickedLayer = this.textContent;
+            let clickedLayer = id;
             e.preventDefault();
             e.stopPropagation();
 
