@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<!-- should compare with other types of businesses as well, or population etc, in order to be able to hint at correlation -->
+<html>
+<head>
+    <meta charset='utf-8' />
+    <title>서울시</title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.42.2/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.42.2/mapbox-gl.css' rel='stylesheet' />
+    <style>
+        body { margin:0; padding:0; }
+        #map { position:absolute; top:0; bottom:0; width:100%; }
+    </style>
+</head>
+<body>
+<style>
+    #menu {
+        background: #fff;
+        position: absolute;
+        z-index: 1;
+        top: 10px;
+        right: 10px;
+        border-radius: 3px;
+        width: 120px;
+        border: 1px solid rgba(0,0,0,0.4);
+        font-family: 'Open Sans', sans-serif;
+    }
+
+    #menu a {
+        font-size: 13px;
+        color: #404040;
+        display: block;
+        margin: 0;
+        padding: 0;
+        padding: 10px;
+        text-decoration: none;
+        border-bottom: 1px solid rgba(0,0,0,0.25);
+        text-align: center;
+    }
+
+    #menu a:last-child {
+        border: none;
+    }
+
+    #menu a:hover {
+        background-color: #f8f8f8;
+        color: #404040;
+    }
+
+    #menu a.active {
+        background-color: #3887be;
+        color: #ffffff;
+    }
+
+    #menu a.active:hover {
+        background: #3074a4;
+    }
+</style>
+
+<nav id="menu"></nav>
+<div id='map'></div>
+
+<script>
+mapboxgl.accessToken = 'pk.eyJ1IjoiYWNoaW1rb2giLCJhIjoiZEtRRjhLcyJ9.RbYJ5gfH14mN8BB9XUIWJg';
+let map = new mapboxgl.Map({
+    container: 'map',
+    style: 'mapbox://styles/mapbox/dark-v9',
+    center: [127, 37.56],
+    zoom: 10.5
+});
+
+map.on('load', function() {
+    //Add a geojson point source.
+    //Heatmap layers also work with a vector tile source.
+    map.addSource('loans', {
+        "type": "geojson",
+        "data": "/data/loans.geojson"
+    });
+    map.addSource('clinics', {
+        "type": "geojson",
+        "data": "/data/plastic-clinics.geojson"
+    });
+    map.addSource('danlan', {
+        "type": "geojson",
+        "data": "/data/danlan.geojson"
+    });
+    map.addSource('yuheung', {
+        "type": "geojson",
+        "data": "/data/yuheung.geojson"
+    });
+
+    map.addLayer({
+        "id": "loans-point",
+        "type": "circle",
+        "source": "loans",
+        "minzoom": 8,
+        "paint": {
+            "circle-radius": {
+                "base": 1,
+                "stops": [
+                    [10, 1],
+                    [12, 3],
+                    [16, 5],
+                    [22, 7]
+                ]
+            },
+            "circle-color": "#1b9e77",
+            "circle-stroke-color": "white",
+            "circle-stroke-width": 1,
+            //Transition from heatmap to circle layer by zoom level
+            "circle-opacity": {
+                "stops": [
+                    [7, 0.5],
+                    [13, 1]
+                ]
+            }
+        }
+    });
+
+    map.addLayer({
+        "id": "clinics-point",
+        "type": "circle",
+        "source": "clinics",
+        "minzoom": 8,
+        "paint": {
+            "circle-radius": {
+                "base": 1,
+                "stops": [
+                    [10, 1],
+                    [12, 3],
+                    [16, 5],
+                    [22, 7]
+                ]
+            },
+            "circle-color": "#fc8d62",
+            "circle-stroke-color": "white",
+            "circle-stroke-width": 1,
+            //Transition from heatmap to circle layer by zoom level
+            "circle-opacity": {
+                "stops": [
+                    [7, 0.5],
+                    [13, 1]
+                ]
+            }
+        }
+    });
+
+    map.addLayer({
+        "id": "yuheung-point",
+        "type": "circle",
+        "source": "yuheung",
+        "minzoom": 8,
+        "paint": {
+            "circle-radius": {
+                "base": 1,
+                "stops": [
+                    [10, 1],
+                    [12, 3],
+                    [16, 5],
+                    [22, 7]
+                ]
+            },
+            "circle-color": "#1f78b4",
+            "circle-stroke-color": "white",
+            "circle-stroke-width": 1,
+            //Transition from heatmap to circle layer by zoom level
+            "circle-opacity": {
+                "stops": [
+                    [7, 0.5],
+                    [13, 1]
+                ]
+            }
+        }
+    });
+
+    map.addLayer({
+        "id": "danlan-point",
+        "type": "circle",
+        "source": "danlan",
+        "minzoom": 8,
+        "paint": {
+            "circle-radius": {
+                "base": 1,
+                "stops": [
+                    [10, 1],
+                    [12, 3],
+                    [16, 5],
+                    [22, 7]
+                ]
+            },
+            "circle-color": "#a6cee3",
+            "circle-stroke-color": "white",
+            "circle-stroke-width": 1,
+            //Transition from heatmap to circle layer by zoom level
+            "circle-opacity": {
+                "stops": [
+                    [7, 0.5],
+                    [13, 1]
+                ]
+            }
+        }
+    });
+
+    let toggleableLayerIds = [ 'loans-point', 'clinics-point', 'danlan-point', 'yuheung-point' ];
+
+    for (let i = 0; i < toggleableLayerIds.length; i++) {
+        let id = toggleableLayerIds[i];
+
+        let link = document.createElement('a');
+        link.href = '#';
+        link.className = 'active';
+        link.textContent = id;
+
+        link.onclick = function (e) {
+            let clickedLayer = this.textContent;
+            e.preventDefault();
+            e.stopPropagation();
+
+            let visibility = map.getLayoutProperty(clickedLayer, 'visibility');
+
+            if (visibility === 'visible') {
+                map.setLayoutProperty(clickedLayer, 'visibility', 'none');
+                this.className = '';
+            } else {
+                this.className = 'active';
+                map.setLayoutProperty(clickedLayer, 'visibility', 'visible');
+            }
+        };
+
+        let layers = document.getElementById('menu');
+        layers.appendChild(link);
+    }
+});
+</script>
+
+</body>
+</html>
