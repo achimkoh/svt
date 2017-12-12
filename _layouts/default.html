@@ -52,7 +52,7 @@
     </script>
     <script>
       function getGiphy(tag) {
-        var gif = $.get("http://api.giphy.com/v1/gifs/random?api_key=b5560de659674a64971bb4c80c17f382&tag="+tag, function(){ 
+        var gif = $.get("https://api.giphy.com/v1/gifs/random?api_key=b5560de659674a64971bb4c80c17f382&tag="+tag, function(){ 
           document.getElementById(tag).src = gif.responseJSON.data.image_url; 
         }).done(function() { 
           setTimeout(function(){ document.getElementById(tag).src = ''; }, Math.max(gif.responseJSON.data.image_frames * 50, 3000));

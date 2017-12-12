@@ -74,19 +74,23 @@ map.on('load', function() {
     //Heatmap layers also work with a vector tile source.
     map.addSource('loans', {
         "type": "geojson",
-        "data": "data/loans.geojson"
+        "data": "data/loans.min.geojson"
     });
     map.addSource('clinics', {
         "type": "geojson",
-        "data": "data/plastic-clinics.geojson"
+        "data": "data/plastic-clinics.min.geojson"
     });
     map.addSource('danlan', {
         "type": "geojson",
-        "data": "data/danlan.geojson"
+        "data": "data/danlan.min.geojson"
     });
     map.addSource('yuheung', {
         "type": "geojson",
-        "data": "data/yuheung.geojson"
+        "data": "data/yuheung.min.geojson"
+    });
+    map.addSource('restaurants', {
+        "type": "geojson",
+        "data": "data/restaurants.min.geojson"
     });
 
     map.addLayer({
@@ -197,9 +201,35 @@ map.on('load', function() {
             }
         }
     });
-
-    let toggleableLayerIds = [ 'loans-point', 'clinics-point', 'danlan-point', 'yuheung-point' ];
-    let toggleableLayerTitles = [ '대부업체', '성형 의료기관', '단란주점', '유흥업소' ];
+    map.addLayer({
+        "id": "restaurants-point",
+        "type": "circle",
+        "source": "restaurants",
+        "minzoom": 8,
+        "paint": {
+            "circle-radius": {
+                "base": 1,
+                "stops": [
+                    [10, 1],
+                    [12, 3],
+                    [16, 5],
+                    [22, 7]
+                ]
+            },
+            "circle-color": "white",
+            "circle-stroke-color": "white",
+            "circle-stroke-width": 1,
+            //Transition from heatmap to circle layer by zoom level
+            "circle-opacity": {
+                "stops": [
+                    [7, 0.5],
+                    [13, 1]
+                ]
+            }
+        }
+    });
+    let toggleableLayerIds = [ 'loans-point', 'clinics-point', 'danlan-point', 'yuheung-point', 'restaurants-point'];
+    let toggleableLayerTitles = [ '대부업체', '성형 의료기관', '단란주점', '유흥업소', '휴게음식점' ];
 
     for (let i = 0; i < toggleableLayerIds.length; i++) {
         let id = toggleableLayerIds[i];
