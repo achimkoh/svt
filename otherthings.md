@@ -10,7 +10,7 @@ permalink: /otherthings/
 
 ### Translations 번역 작업
 
-강이룬, 소원영 (큐레이션). (2016). 서울자유지도. [link](https://medium.com/seoul-libre-maps)
+강이룬, 소원영 (큐레이션). (2016). 서울자유지도. [link](https://medium.com/seoul-libre-maps)    
 <span style="color: #aaa">Curated by Kang, E Roon & So, Wonyoung. _Seoul Libre Maps._ </span>
 
 Ham, Yang Ah. _The Village_. Forthcoming. <small>(co-translation)</small>
@@ -49,7 +49,7 @@ Choi, Taeyoon & Kang, E Roon. (2015) In Search of Personalized Time. Website and
 
 ### Editing 감수, 편집 등
 
-강이룬, 소원영 (큐레이션). (2016). 서울자유지도. [link](https://medium.com/seoul-libre-maps)
+강이룬, 소원영 (큐레이션). (2016). 서울자유지도. [link](https://medium.com/seoul-libre-maps)    
 <span style="color: #aaa">Curated by Kang, E Roon & So, Wonyoung. _Seoul Libre Maps._ </span>
 
 강이룬, 소원영. (2016). "multilingual.js: 다국어 웹 타이포그래피를 위한 섞어쓰기 라이브러리". 글짜씨, 8(1), pp. 8-33. 
