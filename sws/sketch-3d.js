@@ -3,11 +3,13 @@
 
 /* test 3d */
 
+// better synth sound
+// scales
+
 let sonicWires = [];
 let currentWire;
-let spinner = [];
 
-let back;
+let back, spinner;
 
 let anglePerFrame = 0.5;
 let direction = 1;
@@ -15,80 +17,132 @@ let loopCurrentPosition = 0;
 const crosshairSize = 10;
 
 let oscType = 'sine';
-let steps = 26;
+let oscSelect;
+let notesPerGrid = 2;
+let notesPerGridSlider;
 let gridSize = 13;
+let gridSizeSlider;
+let scaleOffset = 60;
+let scaleOffsetSlider;
+let snapToGrid = true;
+let snapToGridToggle;
 
-let button;
+let musicScale, scaleRadio;
+
 let limiter;
 
+let totalPoints;
+
 function setup() { 
-  createCanvas(600, 400, WEBGL);
+  let cnv = createCanvas(600, 400, WEBGL);
+  cursor(CROSS);
   // camera();
-  back = createGraphics(400,400);
+  back = createGraphics(600,600); // dimensions of graphic seem to have little impact on fps
   frameRate(60);
 
-  cursor(CROSS);
+  cnv.mousePressed(function() {
+    currentWire = new sonicWire();
+    sonicWires.push(currentWire); 
+  });
+  cnv.mouseReleased(function() {
+    currentWire.recording = false;
+    // if too few points were recorded to consider what you just drew as a line, below code will discard it
+    if (sonicWires[sonicWires.length - 1].points.length < 2) {
+      sonicWires[sonicWires.length - 1].panner.dispose();
+      sonicWires[sonicWires.length - 1].synth.triggerRelease();
+      sonicWires[sonicWires.length - 1].synth.dispose();
+      sonicWires.pop();
+      print("Line was too short and not recorded")
+    }
+  }); 
+
+  spinner = [];
   spinner.push(createVector(-50,30,0));
   spinner.push(createVector(50,30,0));
+
+  gridSizeSlider = createSlider(7, 25, 13);
+  gridSizeSlider.parent('gridSizeSlider');
+
+  notesPerGridSlider = createSlider(1,3,1);
+  notesPerGridSlider.parent('notesPerGridSlider');
+
+  scaleOffsetSlider = createSlider(36,84,60);
+  scaleOffsetSlider.parent('scaleOffsetSlider');
+
+  snapToGridToggle = createCheckbox('Snap to Grid', true);
+  snapToGridToggle.changed( function() { snapToGrid = this.checked() } );
+  snapToGridToggle.parent('snapToGridToggle')
+
+  scaleRadio = createRadio(); 
+  scaleRadio.option("chromatic");
+  scaleRadio.option("pentatonic");
+  scaleRadio.option("major");
+  scaleRadio.parent("scaleRadio");
+
+  oscSelect = createSelect();
+  ["sine","triangle","sawtooth","square16","square4","pwm"].forEach( (value) => oscSelect.option(value) );
+  oscSelect.changed( () => oscType = oscSelect.value() );
+  oscSelect.parent("oscSelect");
 
   limiter = new Tone.Limiter(-12).toMaster();
 } 
 
-
 function draw() { 
+  gridSize = gridSizeSlider.value();
+  notesPerGrid = notesPerGridSlider.value();
+  scaleOffset = scaleOffsetSlider.value();
+  musicScale = scaleRadio.value();
+
   // keep track of current position in loop
   loopCurrentPosition = (loopCurrentPosition + direction) % (360 / anglePerFrame); 
   let segmentSize = map(loopCurrentPosition%(45 / anglePerFrame), 0, 45 / anglePerFrame, 0,crosshairSize);
 
   background(230);
 
-  // create new line
-  if (mouseIsPressed) {
-    currentWire.addPoint();
-  }
- 
-  // do the main thing: see sonicWire() definition for details
-  let totalPoints = 0;
-  for (let i=0; i < sonicWires.length; i++) {
-    sonicWires[i].update();
-    sonicWires[i].show();
-    totalPoints += sonicWires[i].points.length;
-    if (keyIsDown(UP_ARROW)) sonicWires[i].rotate(1,1,0,0);
-    if (keyIsDown(DOWN_ARROW)) sonicWires[i].rotate(-1,1,0,0);
-    if (keyIsDown(LEFT_ARROW)) sonicWires[i].rotate(-1,0,0,1);
-    if (keyIsDown(RIGHT_ARROW)) sonicWires[i].rotate(1,0,0,1);
-  }
+  // start drawing new line
+  // if (mouseIsPressed) currentWire.addPoint();
+  if (currentWire && currentWire.recording) currentWire.addPoint();
 
-  // draw everything 2d
-  drawGrid(back, segmentSize);
+  // do the main thing: see sonicWire() definition for details
+  totalPoints = 0; // keep track of total vectors to see when framerate starts dropping
+  sonicWires.forEach( (wire) => {
+    wire.update();
+    wire.show();
+    totalPoints += wire.points.length;
+  } )
+
   drawSpinner();
+  // draw everything 2d
+  back.clear();
+  drawGrid(back, segmentSize);
+  back.text(frameRate(), 50, 50);
   texture(back);
   plane(600,400);
 }
 
+// function mousePressed() {  
+//   currentWire = new sonicWire();
+//   sonicWires.push(currentWire); 
+// }
 
-function mousePressed() {  
-  currentWire = new sonicWire();
-  sonicWires.push(currentWire); 
-}
+// function mouseReleased() {
+//   currentWire.recording = false;
 
-function mouseReleased() {
-  // sonicWires[sonicWires.length - 1].recording = false;
-  currentWire.recording = false;
-
-  // if too few points were recorded to consider what you just drew as a line, below code will discard it
-  if (sonicWires[sonicWires.length - 1].points.length < 2) {
-    sonicWires[sonicWires.length - 1].synth.triggerRelease();
-    sonicWires[sonicWires.length - 1].synth.disconnect();
-    sonicWires.pop();
-    print("Line was too short and not recorded")
-  }
-}
+//   // if too few points were recorded to consider what you just drew as a line, below code will discard it
+//   if (sonicWires[sonicWires.length - 1].points.length < 2) {
+//     sonicWires[sonicWires.length - 1].panner.dispose();
+//     sonicWires[sonicWires.length - 1].synth.triggerRelease();
+//     sonicWires[sonicWires.length - 1].synth.dispose();
+//     sonicWires.pop();
+//     print("Line was too short and not recorded")
+//   }
+// }
 
 function keyPressed() {
   if (keyCode === BACKSPACE) {
+    sonicWires[sonicWires.length - 1].panner.dispose();
     sonicWires[sonicWires.length - 1].synth.triggerRelease();
-    sonicWires[sonicWires.length - 1].synth.disconnect();
+    sonicWires[sonicWires.length - 1].synth.dispose();
     sonicWires.pop();
   }
   
@@ -97,7 +151,7 @@ function keyPressed() {
   }
   
   if (keyCode === ENTER) {
-    print(sonicWires.length);
+    print(sonicWires.length + "; " + totalPoints);
   }
 
 }
@@ -124,10 +178,10 @@ function sonicWire() {
         "type" : oscType
       },
       "envelope" : {
-        "attack" : 0.2,
-        "decay" : 1,
-        "sustain" : 0.2,
-        "release" : 0.2
+        "attack" : 0.3,
+        "decay" : 0,
+        "sustain" : 1,
+        "release" : 0.5
       }
     }).connect(this.panner);
   this.synth.volume = 0.1;
@@ -135,33 +189,43 @@ function sonicWire() {
   // Add current cursor location to an array of vectors
   this.points = [];
   this.addPoint = function() {
+    let posX = mouseX - width/2;
     let posY = mouseY - height/2;
-    if (this.points.length > 0) {
-      // this should really be in another if statement that checks whether "snap" is true
-      // find the closest semitone 
-      // let approximateY = Math.round(map(posY, -height/2, height/2, 0, steps)) * height / steps;
-      // let easingB = 0.25;
-      // posY = (posY)*(1-easingB) + (approximateY - height/2)*easingB;
-
-      // apply light easing towards previous tone. makes line smoother
-      let easingA = 0.5;
+    if (this.points.length > 0) { // apply light easing towards previous tone. makes line smoother      
+      let prevX = this.points[this.points.length-1].x;
       let prevY = this.points[this.points.length-1].y;
-      posY = (prevY)*(1-easingA) + (posY)*easingA;
+      if (snapToGrid) { // find the closest semitone 
+        let approximateY = Math.round(
+          map(posY, -height/2, height/2, 0, gridSize*notesPerGrid)
+          ) * height / (gridSize*notesPerGrid);
+        let easingB = 0.33;
+        // posY = approximateY-height/2;
+        posY = (prevY)*(1-easingB) + (approximateY - height/2)*(easingB);      
+      }
+      let easingA = 0.5;
+      posX = (prevX)*(1-easingA) + (posX)*easingA;
+      posY = (prevY)*(1-easingA) + (posY)*easingA;      
     } 
-    this.points.push(createVector(mouseX - width/2, posY, 0));
+    this.points.push(createVector(posX, posY, 0));
   };
 
   // Draw the line on the screen
   this.show = function() {
-    stroke(30); strokeWeight(3); fill(0,0,0,0);
+    stroke(30); strokeWeight(1); fill(0,0,0,0);
     beginShape();
-      this.points.forEach((point) => vertex(point.x,point.y,point.z));
+    //   this.points.forEach((point) => vertex(point.x,point.y,point.z));
+    // instead of drawing every vector, skip every other one to boost framerate
+    // downside is that line is less smooth.
+    for (let i=0; i<this.points.length; i+=2) {
+      vertex(this.points[i].x,this.points[i].y,this.points[i].z);
+    }
     endShape();
   };
 
   this.update = function() {
     if (this.loopStart == loopCurrentPosition && direction != 0) {
       this.playing = true;
+      this.synth.triggerAttack();
     }
     
     if (this.playhead == this.points.length) {
@@ -173,23 +237,30 @@ function sonicWire() {
     if (this.playing) {
       // draw a playhead.
       // this is in this.update() because it needs to be called before this.playhead++
+      noStroke(); 
+      if (this.recording) fill(250,30,30); else fill(0,200,0);
       push();
-        fill(0);
         translate(this.points[this.playhead].x,this.points[this.playhead].y,this.points[this.playhead].z);
-        sphere(5);
+        sphere(4,8,8);
       pop();
             
       // pan the synth according to x position
       this.panner.pan.value = map(this.points[this.playhead].x, -width/2, width/2, -0.3, 0.3, true);
 
       // play the oscillator according to y position
-      this.synth.triggerAttack(
+      this.synth.setNote(
         pitchFromVector(this.points[this.playhead])
       );
+      if (this.points.length == 1) this.synth.triggerAttack();
       this.playhead++;
     }
     
     this.rotate(anglePerFrame, 0, direction, 0);
+    if (keyIsDown(UP_ARROW)) this.rotate(1,1,0,0);
+    if (keyIsDown(DOWN_ARROW)) this.rotate(-1,1,0,0);
+    if (keyIsDown(LEFT_ARROW)) this.rotate(-1,0,0,1);
+    if (keyIsDown(RIGHT_ARROW)) this.rotate(1,0,0,1);
+
   };
   
   // rotate all vector points by a given amount 
@@ -198,7 +269,6 @@ function sonicWire() {
       rotatePoint(this.points[i], rot, x, y, z);
     }
   };
-
 }
 
 function rotatePoint(inputVector, angle, rotX, rotY, rotZ) {
@@ -214,20 +284,13 @@ function rotatePoint(inputVector, angle, rotX, rotY, rotZ) {
   inputVector.set(rx,ry,rz);
 }
 
-function pitchFromVector(inputVector) {
-  let note = map(inputVector.y, height/2, -height/2, 0.5, steps+0.5); // add 0.5 so that note change occurs between lines and not on them
+function pitchFromVector(inputVector, musicScale="chromatic") {
+  let note = map(inputVector.y, height/2, -height/2, 0.5, gridSize*notesPerGrid+0.5); // add 0.5 so that note change occurs between lines and not on them
   // return pow(2,(f+76)/12);
-  return Tone.Frequency(note+60, "midi");
+  return Tone.Frequency(note+scaleOffset, "midi");
 }
 
 function drawGrid(graphic, segmentSize) {
-    // horizontal lines
-  graphic.clear();
-  graphic.strokeWeight(1); 
-  graphic.stroke(100,30,30);
-  for (let i=0; i<gridSize; i++){
-    graphic.line(0,i*height/gridSize,width,i*height/gridSize);
-  }
   // draw center crosshair
   graphic.stroke(20);graphic.strokeWeight(1);
   graphic.line(graphic.width/2-crosshairSize*2/3,graphic.height/2,
@@ -240,19 +303,26 @@ function drawGrid(graphic, segmentSize) {
   graphic.line(graphic.width/2,graphic.height/2-segmentSize,
     graphic.width/2,graphic.height/2+segmentSize);
 
+  // horizontal lines
+  graphic.strokeWeight(1); graphic.stroke(50,50,50,200);
+  for (let i=0; i<gridSize; i++){
+    graphic.line(0,i*graphic.height/gridSize,graphic.width,i*graphic.height/gridSize);
+  }
 }
 
 function drawSpinner() {
   strokeWeight(1);
   for (let i=0; i < spinner.length; i++) {
     let zSign = Math.sign(spinner[i].z);
-    stroke(250,30,30);
+    stroke(250,-zSign*150,-zSign*150);
     line(spinner[i].x, spinner[i].y, spinner[i].z, 0, 0, 0);
     // draw the round thingy at one end
-    if (i == 1) {
+    if (i == 0) {
+      noStroke();
+      fill(250,30,30,250+zSign*70);
       push();
         translate(spinner[i].x, spinner[i].y, spinner[i].z);
-        sphere(5);
+        sphere(4, 8, 8);
       pop();
     }
     rotatePoint(spinner[i], anglePerFrame, 0, direction, 0);

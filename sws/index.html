@@ -2,8 +2,7 @@
     <script src="p5-mod.js"></script>
     <script src="Tone.min.js"></script>
     <!-- <script src="sonicwire.js"></script> -->
-    <!-- <script src="p5.dom.min.js"></script> -->
-    <!-- <script src="p5.sound.min.js"></script> -->
+    <script src="p5.dom.min.js"></script>
     <link rel="stylesheet" type="text/css" href="style.css">
   </head>
   <body>
@@ -13,9 +12,16 @@
       -<br>
   		CLICK and DRAG to draw<br>
   		BACKSPACE to remove most recent line<br>
-  		SPACE to trigger y rotation<br>
+  		SPACE to toggle y rotation<br>
   		ARROWS to rotate in other axes
   	 </p>
-    <!-- <script src="sketch.js"></script> -->
+    <div id='gridSizeSlider'>Grids (7 to 25)</div>
+    <div id='notesPerGridSlider'>Notes per grid (1 to 3)</div>
+    <div id='scaleOffsetSlider'>Scale Offset (36 to 84)</div>
+    <div id='snapToGridToggle'></div>
+    <div id='scaleRadio'>Scale (not implemented yet): </div>
+    <div id='oscSelect'>oscillator type</div>
     <script src="sketch-3d.js"></script>
+    <!-- <script src="example.js"></script>     -->
+
   </body></html>

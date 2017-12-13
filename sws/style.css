@@ -3,7 +3,7 @@ html, body {
   padding: 0;
   font-family: monospace;
   height: 100%; 
-  overflow: hidden;
+  /*overflow: hidden;*/
 }
 
 body {
@@ -19,3 +19,6 @@ h1 {
 	font-style: bold;
 }
 
+div {
+	margin: 1em;
+}

@@ -35,7 +35,6 @@ let points;
 function setup() { 
   createCanvas(400, 400, WEBGL);
   points = [];
-
 } 
 
 function draw() { 
@@ -52,4 +51,7 @@ function draw() {
 	  points.forEach((point) => vertex(point.x,point.y,point.z));
 	endShape();  	
   }
+
+  stroke(250,0,0);
+  sphere(50);
 }
