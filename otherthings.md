@@ -10,7 +10,8 @@ permalink: /otherthings/
 
 ### Translations 번역 작업
 
-<!-- ### Kang, E Roon & So, Wonyoung. _Seoul Libre Maps._ -->
+강이룬, 소원영 (큐레이션). (2016). 서울자유지도. [link](https://medium.com/seoul-libre-maps)
+<span style="color: #aaa">Curated by Kang, E Roon & So, Wonyoung. _Seoul Libre Maps._ </span>
 
 Ham, Yang Ah. _The Village_. Forthcoming. <small>(co-translation)</small>
 
@@ -47,6 +48,9 @@ Choi, Taeyoon & Kang, E Roon. (2015) In Search of Personalized Time. Website and
 "렉앤플레이와 함께하는 뮤직,비디오,블로그". 강연. 미디액트, 서울. 2011년 7월 26일 ~ 8월 12일. [관련연재](http://www.mediact.org/web/board/edu_news_view.php?code=Guide&mode=View&bbid=EDU_MOVIEMAKE&page=1&nums=19&sfl=&stx=&grp=)
 
 ### Editing 감수, 편집 등
+
+강이룬, 소원영 (큐레이션). (2016). 서울자유지도. [link](https://medium.com/seoul-libre-maps)
+<span style="color: #aaa">Curated by Kang, E Roon & So, Wonyoung. _Seoul Libre Maps._ </span>
 
 강이룬, 소원영. (2016). "multilingual.js: 다국어 웹 타이포그래피를 위한 섞어쓰기 라이브러리". 글짜씨, 8(1), pp. 8-33. 
 
