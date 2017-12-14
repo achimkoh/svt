@@ -5,6 +5,7 @@
 
 // better synth sound
 // scales
+// save drawings to file / load from files
 
 let sonicWires = [];
 let currentWire;
@@ -328,3 +329,73 @@ function drawSpinner() {
     rotatePoint(spinner[i], anglePerFrame, 0, direction, 0);
   }
 }
+
+function clearWires() {
+  sonicWires.forEach( () => sonicWires.pop() );
+}
+
+// save sonicwire to file
+function saveWires(filename='sonicwires.json') {
+  let backup = [];
+
+  for (let i=0; i<sonicWires.length; i++) {
+    let backup_points = [];
+    sonicWires[i].points.forEach(
+      (point) => backup_points.push({ 
+        x: point.x, y: point.y, z: point.z 
+      }) 
+    );
+    backup.push({
+      loopStart: sonicWires[i].loopStart,
+      playhead: sonicWires[i].playhead,
+      playing: sonicWires[i].playing,
+      recording: sonicWires[i].recording,
+      oscType: sonicWires[i].synth.oscillator.type,
+      attack: sonicWires[i].synth.envelope.attack,
+      decay: sonicWires[i].synth.envelope.decay,
+      sustain: sonicWires[i].synth.envelope.sustain,
+      release: sonicWires[i].synth.envelope.release,
+      points: backup_points
+    });
+  }
+  saveJSONArray({content: backup}, filename)
+}
+
+// load from file
+function loadWires(filecontent) {
+  let backup = JSON.parse(filecontent);
+  backup = backup["content"];
+  for (let i=0; i<backup.length; i++) {
+    let sw = new sonicWire();
+    sw.loopStart = backup[i].loopStart;
+    sw.playhead = backup[i].playhead;
+    sw.playing = backup[i].playing;
+    sw.recording = backup[i].recording;
+    sw.synth.oscillator.type = backup[i].oscType;
+    sw.synth.envelope.attack = backup[i].attack;
+    sw.synth.envelope.decay = backup[i].decay;
+    sw.synth.envelope.sustain = backup[i].sustain;
+    sw.synth.envelope.release = backup[i].release;
+    backup[i].points.forEach( (point) => sw.points.push(createVector(point.x, point.y, point.z)) );
+
+    sonicWires.push(sw);
+  }
+}
+
+// local disk file snippet from https://stackoverflow.com/a/26298948/8157867
+
+function readSingleFile(e) {
+  var file = e.target.files[0];
+  if (!file) {
+    return;
+  }
+  var reader = new FileReader();
+  reader.onload = function(e) {
+    var contents = e.target.result;
+    loadWires(contents);
+  };
+  reader.readAsText(file);
+}
+
+document.getElementById('file-input')
+  .addEventListener('change', readSingleFile, false);
