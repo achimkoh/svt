@@ -14,26 +14,21 @@ let currentWire;
 let back, spinner;
 
 let anglePerFrame = 0.5;
-let direction = 1;
+var direction = 1; var directionMin = 0; var directionMax = 1; 
+// reverse direction (-1) is wonky. need to fix loopStart?
 let loopCurrentPosition = 0;
 const crosshairSize = 10;
 
-let oscType = 'sine';
-let oscSelect;
-let notesPerGrid = 2;
-let notesPerGridSlider;
-let gridSize = 13;
-let gridSizeSlider;
-let scaleOffset = 60;
-let scaleOffsetSlider;
-let snapToGrid = true;
-let snapToGridToggle;
-
-let musicScale, scaleRadio;
+var notesPerGrid = 2; var notesPerGridMin = 1; var notesPerGridMax = 3;
+var gridSize = 13; var gridSizeMin = 7; var gridSizeMax = 25;
+var scaleOffset = 60; var scaleOffsetMin = 36; var scaleOffsetMax = 84;
+var snapToGrid = true;
+var oscType = ["sine","triangle","sawtooth","square16","square4","pwm"];
+// var musicScale = ["chromatic", "major", "pentatonic"];
 
 let limiter;
-
 let totalPoints;
+let gui;
 
 function setup() { 
   let cnv = createCanvas(600, 400, WEBGL);
@@ -62,38 +57,14 @@ function setup() {
   spinner.push(createVector(-50,30,0));
   spinner.push(createVector(50,30,0));
 
-  gridSizeSlider = createSlider(7, 25, 13);
-  gridSizeSlider.parent('gridSizeSlider');
-
-  notesPerGridSlider = createSlider(1,3,1);
-  notesPerGridSlider.parent('notesPerGridSlider');
-
-  scaleOffsetSlider = createSlider(36,84,60);
-  scaleOffsetSlider.parent('scaleOffsetSlider');
-
-  snapToGridToggle = createCheckbox('Snap to Grid', true);
-  snapToGridToggle.changed( function() { snapToGrid = this.checked() } );
-  snapToGridToggle.parent('snapToGridToggle')
-
-  scaleRadio = createRadio(); 
-  scaleRadio.option("chromatic");
-  scaleRadio.option("pentatonic");
-  scaleRadio.option("major");
-  scaleRadio.parent("scaleRadio");
-
-  oscSelect = createSelect();
-  ["sine","triangle","sawtooth","square16","square4","pwm"].forEach( (value) => oscSelect.option(value) );
-  oscSelect.changed( () => oscType = oscSelect.value() );
-  oscSelect.parent("oscSelect");
-
   limiter = new Tone.Limiter(-12).toMaster();
+
+  gui = createGui('Options');
+  gui.addGlobals('direction' , 'snapToGrid', 'gridSize', 'notesPerGrid', 'scaleOffset', 'oscType', 'musicScale');
+  gui.show();
 } 
 
 function draw() { 
-  gridSize = gridSizeSlider.value();
-  notesPerGrid = notesPerGridSlider.value();
-  scaleOffset = scaleOffsetSlider.value();
-  musicScale = scaleRadio.value();
 
   // keep track of current position in loop
   loopCurrentPosition = (loopCurrentPosition + direction) % (360 / anglePerFrame); 
@@ -120,6 +91,8 @@ function draw() {
   back.text(frameRate(), 50, 50);
   texture(back);
   plane(600,400);
+
+
 }
 
 // function mousePressed() {  

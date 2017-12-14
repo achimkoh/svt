@@ -1,5 +1,7 @@
 <!DOCTYPE html><html><head>
     <script src="p5-mod.js"></script>
+    <script src="quicksettings.js"></script>
+    <script src="p5.gui.js"></script>
     <script src="Tone.min.js"></script>
     <!-- <script src="sonicwire.js"></script> -->
     <script src="p5.dom.min.js"></script>
@@ -14,12 +16,6 @@
   		SPACE to toggle y rotation<br>
   		ARROWS to rotate in other axes
   	 </p>
-    <div id='gridSizeSlider'>Grids (7 to 25)</div>
-    <div id='notesPerGridSlider'>Notes per grid (1 to 3)</div>
-    <div id='scaleOffsetSlider'>Scale Offset (36 to 84)</div>
-    <div id='snapToGridToggle'></div>
-    <div id='scaleRadio'>Scale (not implemented yet): </div>
-    <div id='oscSelect'>oscillator type</div>
     <div id='save-file'>Back up your drawing: <button type='button' onclick='saveWires();'>Save</button></div>
     <div id='load-file'>Load drawing from backup file: <input id='file-input' type='file' /></div>
     <!-- <div>Clear canvas: <button type='button' onclick='clearWires();'>Clear</button></div> -->
