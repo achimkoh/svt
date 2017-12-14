@@ -6,6 +6,8 @@ date: 2017-12-10
 tags: ["project", "data visualization"]
 ---
 
+[current version link](/seoul-sex-industry-map)
+
 hostess bars, predatory lending, plastic surgery
 
 http://www.ildaro.com/sub_read.html?uid=7687
