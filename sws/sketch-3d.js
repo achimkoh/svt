@@ -1,8 +1,6 @@
 /* Port of sonic wire sculptor by amit pitaru into p5.js */
 /* http://www.sonicwiresculptor.com/ */
 
-/* test 3d */
-
 // better synth sound
 // scales
 // save drawings to file / load from files
@@ -34,7 +32,7 @@ function setup() {
   let cnv = createCanvas(600, 400, WEBGL);
   cursor(CROSS);
   // camera();
-  back = createGraphics(600,600); // dimensions of graphic seem to have little impact on fps
+  back = createGraphics(600,400); // dimensions of graphic seem to have little impact on fps
   frameRate(60);
 
   cnv.mousePressed(function() {
@@ -88,7 +86,7 @@ function draw() {
   // draw everything 2d
   back.clear();
   drawGrid(back, segmentSize);
-  back.text(frameRate(), 50, 50);
+  back.text(frameRate().toString().substring(0,4) + " fps", 20, 20);
   texture(back);
   plane(600,400);
 
@@ -268,13 +266,13 @@ function pitchFromVector(inputVector, musicScale="chromatic") {
 function drawGrid(graphic, segmentSize) {
   // draw center crosshair
   graphic.stroke(20);graphic.strokeWeight(1);
-  graphic.line(graphic.width/2-crosshairSize*2/3,graphic.height/2,
-    graphic.width/2+crosshairSize*2/3,graphic.height/2);
+  graphic.line(graphic.width/2-crosshairSize,graphic.height/2,
+    graphic.width/2+crosshairSize,graphic.height/2);
   graphic.line(graphic.width/2,graphic.height/2-crosshairSize,
     graphic.width/2,graphic.height/2+crosshairSize);
   graphic.stroke(250,30,30);graphic.strokeWeight(3);
-  graphic.line(graphic.width/2-segmentSize*2/3,graphic.height/2,
-    graphic.width/2+segmentSize*2/3,graphic.height/2);
+  graphic.line(graphic.width/2-segmentSize,graphic.height/2,
+    graphic.width/2+segmentSize,graphic.height/2);
   graphic.line(graphic.width/2,graphic.height/2-segmentSize,
     graphic.width/2,graphic.height/2+segmentSize);
 
