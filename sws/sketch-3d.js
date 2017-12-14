@@ -6,6 +6,7 @@
 // better synth sound
 // scales
 // save drawings to file / load from files
+// somehow very slow in firefox.
 
 let sonicWires = [];
 let currentWire;

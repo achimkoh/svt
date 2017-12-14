@@ -1,6 +1,6 @@
 ---
 layout: post
-date: 2015-08-31
+date: 2017-12-13
 title: Sonic Wire Sculptor
 slug: sonic-wire-sculptor/
 tags: ["project", "sfpc", "openframeworks", "music"]
