@@ -28,6 +28,19 @@ let limiter;
 let totalPoints;
 let gui;
 
+let envelope = {
+  attack: 0.1,
+  release: 0.3,
+  releaseCurve: 'linear'
+};
+let filterEnvelope = {
+  baseFrequency: 200,
+  octaves: 2,
+  attack: 0,
+  decay: 0,
+  release: 10
+};
+
 function setup() { 
   let cnv = createCanvas(600, 400, WEBGL);
   cursor(CROSS);
@@ -146,15 +159,17 @@ function sonicWire() {
 
   // each sonicWire() instance has a Tone.Synth() in it
   this.panner = new Tone.Panner().connect(limiter);
-  this.synth = new Tone.Synth({
-      "oscillator" : {
-        "type" : oscType
+  this.synth = new Tone.DuoSynth({
+      harmonicity: 1,
+      voice0: {
+        oscillator: {type: 'triangle'},
+        envelope,
+        filterEnvelope
       },
-      "envelope" : {
-        "attack" : 0.3,
-        "decay" : 0,
-        "sustain" : 1,
-        "release" : 0.5
+      voice1: {
+        oscillator: {type: 'sine'},
+        envelope,
+        filterEnvelope
       }
     }).connect(this.panner);
   this.synth.volume = 0.1;
