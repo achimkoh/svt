@@ -15,8 +15,6 @@ Headlines like ["Google Wants to Train Other Companies to Use Its AI Tools"](htt
 
 <iframe title="video showing word clouds in the form of company logos" src="https://player.vimeo.com/video/272119190" width="640" height="640" frameborder="0"></iframe>
 
-<!-- {% video /assets/video/portfolio/corporate-desires.mp4 /assets/video/portfolio/corporate-desires.webm autoplay %} -->
-
 For the next step, I am considering ways to visualize the change of topics of the desires as time flows.
 
 <!--[Github repository](https://github.com/achimkoh/corporate-desires)-->
