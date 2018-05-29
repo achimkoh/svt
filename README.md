@@ -1,3 +1,3 @@
 # Credit
 
-Website by Achim Koh, using the [Lanyon](http://lanyon.getpoole.com/) theme by [Mark Otto](https://twitter.com/mdo).
+Website by Achim Koh, based on the [Type on Strap](https://github.com/Sylhare/Type-on-Strap) theme.

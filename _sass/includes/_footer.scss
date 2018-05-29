@@ -1,0 +1,21 @@
+.site-footer {
+    @extend %padding-regular;
+    display: inline-block;
+    text-align: center;
+    width: 100%;
+    color: lighten($text-color, 24%);
+    font-size: 0.9em;
+
+    .footer-icons {
+        ul {
+            list-style: none;
+            li {
+                display: inline;
+                svg {
+                    width: 2em;
+                    height: 2em;
+                }
+            }
+        }
+    }
+}

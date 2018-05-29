@@ -1,19 +1,117 @@
-# Gems
-gems: [jekyll-paginate]
+# SITE CONFIGURATION
+baseurl: ""
+url: "https://scalarvectortensor.net"
+title: Koh Achim # site's title
+description: "Researcher in digital technology, art, music, AI, machine learning, data visualization, and the web" # used by search engines
 
-# Setup
-title:               'scalar vector tensor'
-# tagline:             'machine-made' # this should be a random message
-description:         'Projects and other things by <a href="https://twitter.com/achimkoh" target="_blank">@achimkoh</a>.'
-url:                 http://scalarvectortensor.net # the base hostname & protocol for your site
-paginate:            3
-paginate_path:       "page:num"
-permalink:           /:title
-timezone:            America/New_York
+# THEME-SPECIFIC CONFIGURATION
+theme_settings:
+  # Meta
+  title: Koh Achim # blog's title
+  avatar: 
+  favicon: assets/favicon.ico
+  gravatar: # Email MD5 hash
+
+  # Header and footer text
+  header_text: > #two or three lines to describe your site
+    Achim is a researcher, developer, translator and editor.<br>His work engages the technopolitics of machine learning, digital art, musical interfaces, and the South Korean web.
+  # header_text_feature_image: assets/img/pexels/triangular.jpeg
+  footer_text: >
+   achim dot koh at gmail dot com
+
+  # Icons
+  rss: true  # Make sure you created a feed.xml with feed.xml layout
+  email_address: # Full email address, e.g. "sam@example.com"
+  behance:
+  bitbucket:
+  dribbble:
+  facebook:
+  flickr:
+  gitlab:
+  github: "achimkoh"
+  google_plus:
+  instagram:
+  keybase:
+  linkedin:  # Full URL
+  pinterest:
+  reddit:
+  soundcloud:
+  stack_exchange:  # Full URL
+  steam:
+  tumblr:
+  twitter: "achimkoh" # "twitter username"
+  vimeo:
+  wordpress:
+  youtube:
+  arena: "achim-koh"
+  
+  # Sharing options
+  share_buttons:
+    facebook: 
+    twitter: 
+    google_plus: 
+    tumblr:
+    pinterest:
+    pocket:
+    reddit: 
+    linkedin:
+    wordpress:
+    email: 
+
+  # Scripts / Features 
+  google_analytics: # Tracking ID, e.g. "UA-000000-01"
+  disqus_shortname:
+  katex: # true # Enable if using math markup
+  
+  special_page:
+    search: 
+      icon: "search" # Assuming page link and icon are the same
+      enabled: # true
+    tags:
+      icon: "tags"
+      enabled: # true
+  
+  # Localization strings
+  str_follow_on: "Follow on"
+  str_rss_follow: "Follow RSS feed"
+  str_share_on: "Share on"
+  str_add_to: "Add to"
+  str_email: "Email"
+  str_tweet: "Tweet"
+  str_pin_it: "Pin it"
+  str_next_post: "Next post"
+  str_previous_post: "Previous post"
+  str_next_page: "Next"
+  str_previous_page: "Prev"
+  str_continue_reading: "Continue reading"
+  str_javascript_required_disqus: "Please enable JavaScript to view comments."
+
+  # Colours, typography and padding
+  # Open the "_sass > base" folder, and open "_variables.scss"
+  # google_fonts: "Source+Sans+Pro:400,700,700italic,400italic"
+
+  # Post navigation
+  post_navigation: true
+  
+  
+# PAGINATION
+# paginate: 5
+# paginate_path: "blog/page:num"
 
 
-# About/contact
-author:
-  name:              Achim Koh
-  url:               https://twitter.com/achimkoh
-  email:             achim.koh@gmail.com
+# PORTFOLIO
+collections:
+  projects:
+    output: true
+    permalink: /:collection/:name
+
+
+# BUILD SETTINGS
+markdown: kramdown
+highlighter: rouge
+sass:
+  sass_dir: _sass
+  style: :compressed
+plugins: [jekyll-paginate, jekyll-seo-tag]
+#theme: type-on-strap # Uncomment if using the theme as a jekyll theme gem
+exclude: ["Gemfile", "Gemfile.lock", "type-on-strap.gemspec", "*.gem", "LICENSE", "README.md", "screenshot.png", "package.json", "node_modules", "gulpfile.js"]

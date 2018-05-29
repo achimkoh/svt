@@ -1,3 +1,5 @@
 source "https://rubygems.org"
-
-gem 'jekyll', '~> 3.5.2'
+gemspec
+group :jekyll_plugins do
+  gem 'octopress-video-tag'
+end
