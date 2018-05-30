@@ -19,4 +19,4 @@ He works in English, French, Korean, JavaScript, Python, and R.
 
 Achim is pronounced "ah-cheem".
 
-__[CV](/assets/Koh-CV.pdf)__
+__[CV](/assets/Koh-CV.pdf)__ \| __[résumé](/assets/Koh-resume.pdf)__

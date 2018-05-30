@@ -4,7 +4,7 @@ title: NYT Front Pages
 thumbnail: "assets/img/thumbnails/nytimes.jpg"
 date: 2017-02-24
 tags: [data visualization, work in progress]
-index: 14
+index: 16
 ---
 
 During a conversation with a classmate I had noticed that the New York Times offers a scanned image of every front page they have published. I had a vague sense that scraping every one of them and doing something could lead to something cool, and indeed someone did come up with something cool: [Every NYT front page since 1852 by Josh Begley](https://vimeo.com/204951759).
