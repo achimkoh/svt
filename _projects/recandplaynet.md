@@ -5,6 +5,7 @@ img: "assets/img/portfolio/recandplaynet.png"
 thumbnail: "assets/img/thumbnails/recandplaynet.png"
 date: 2012-05-26
 tags: [music]
+index: 9
 ---
 
 ![image]({{ site.baseurl }}/{{ page.img }})

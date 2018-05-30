@@ -5,6 +5,7 @@ img: "assets/img/portfolio/hashtag-iamafeminist.png"
 thumbnail: "assets/img/thumbnails/hashtag-iamafeminist.jpg"
 date: December 20 2016
 tags: [data visualization, work in progress]
+index: 4
 ---
 
 ![image]({{ site.baseurl }}/{{ page.img }})

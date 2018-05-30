@@ -1,7 +1,8 @@
 <!-- Portfolio Grid Section -->
 <section class="portfolio">
     <div class="row">
-        {% for item in site.projects reversed %}
+        {% assign projects = site.projects | sort: 'index' %}
+        {% for item in projects %}
         <div class="col-sm-4 col-xs-6 portfolio-item">
             <a href="{{ site.baseurl }}{{ item.url }}" class="portfolio-link" data-keyboard="true">
                 <div class="caption" title="{{ item.title }}">
@@ -12,7 +13,9 @@
                 <img src="{{ site.baseurl }}/{{ item.thumbnail }}" class="" alt="">
                 <div class="portfolio-title">
                     {{ item.title }}
-                    {% if item.tags contains 'work in progress' %}(wip){% endif %}
+                    {% comment %}
+                        {% if item.tags contains 'work in progress' %}(wip){% endif %}
+                    {% endcomment %}
                 </div>
             </a>
         </div>

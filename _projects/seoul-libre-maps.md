@@ -5,6 +5,7 @@ img: "assets/img/portfolio/seoul-libre-maps.jpg"
 thumbnail: "assets/img/thumbnails/seoul-libre-maps-logo.jpg"
 date: 2017-08-31
 tags: [translation, editing]
+index: 5
 ---
 
 ![image]({{ site.baseurl }}/{{ page.img }})

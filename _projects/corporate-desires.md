@@ -5,6 +5,7 @@ img: "assets/img/portfolio/corporate-desires.png"
 thumbnail: "assets/img/thumbnails/corporate-desires.gif"
 date: Jan 2018
 tags: [work in progress, data visualization]
+index: 13
 ---
 
 ![image]({{ site.baseurl }}/{{ page.img }})

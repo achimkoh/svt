@@ -4,6 +4,7 @@ title: Sonic Wire Sculptor Copy
 thumbnail: "assets/img/thumbnails/sws-2015.jpg"
 date: 2015-05-31
 tags: [music]
+index: 7
 ---
 
 ![installation photo]({{ site.baseurl }}/assets/img/portfolio/sws-2015-installation.jpg)

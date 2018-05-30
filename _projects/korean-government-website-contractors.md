@@ -5,7 +5,7 @@ img: "assets/img/portfolio/gov-websites.png"
 thumbnail: "assets/img/thumbnails/gov-websites.jpg"
 date: 2016-06-01 
 tags: [data visualization]
-
+index: 15
 ---
 
 Who makes these websites? Rummaging through the mess of Korean online data systems for public contracts and visualizing some findings. Based on final project for [Data Visualization Methods, Spring 2016](http://manovich.net/index.php/teaching).

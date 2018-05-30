@@ -5,6 +5,7 @@ feature-img: "assets/img/portfolio/makinglab.jpg"
 thumbnail: "assets/img/thumbnails/makinglab.jpg"
 date: August, 16 2014
 tags: [education, public event]
+index: 12
 ---
 
 [https://4.apap.or.kr/en/makinglab](https://4.apap.or.kr/en/makinglab)

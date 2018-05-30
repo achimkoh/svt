@@ -5,6 +5,7 @@ img: "assets/img/portfolio/critical-machine-learning.png"
 thumbnail: "assets/img/thumbnails/critical-machine-learning.png"
 date: 7 December 2017
 tags: [education]
+index: 2
 ---
 
 [![image]({{ site.baseurl }}/{{ page.img }})](http://criticalml.net/)

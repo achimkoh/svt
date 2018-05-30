@@ -14,7 +14,7 @@ theme_settings:
 
   # Header and footer text
   header_text: > #two or three lines to describe your site
-    Achim is a researcher, developer, translator and editor.<br>His work engages the technopolitics of machine learning, digital art, musical interfaces, and the South Korean web.
+    Achim is a researcher, developer, translator and editor.<br>His work engages the technopolitics of machine learning, digital art, musical interfaces, and the web.
   # header_text_feature_image: assets/img/pexels/triangular.jpeg
   footer_text: >
    achim dot koh at gmail dot com

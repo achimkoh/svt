@@ -4,6 +4,7 @@ title: Text Mining Nate Pann
 thumbnail: "assets/img/thumbnails/nate.png"
 date: 2017-06-15
 tags: [work in progress]
+index: 8
 ---
 
 [Nate Pann Generator, mockup prototype](https://natepan-157420.appspot.com/){:target="_blank"}

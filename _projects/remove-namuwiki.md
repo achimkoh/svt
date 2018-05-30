@@ -4,6 +4,7 @@ title: Remove Namuwiki
 thumbnail: "assets/img/thumbnails/remove-namuwiki.jpg"
 date: 2018-03-26
 tags: [work in progress]
+index: 3
 ---
 
 ### 나무위키 끄기

@@ -5,6 +5,7 @@ img: "assets/img/portfolio/k-www.gif"
 thumbnail: "assets/img/thumbnails/k-www.gif"
 date: November 15 2016
 tags: [media archaeology, public event]
+index: 1
 ---
 
 [![Korean Internet Tour Guide website screenshot]({{ site.baseurl }}/assets/img/portfolio/k-www-website.png)](http://k-www.kr/en)
