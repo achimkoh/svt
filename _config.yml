@@ -10,6 +10,8 @@ theme_settings:
   title: Koh Achim # blog's title
   avatar: 
   favicon: assets/favicon.ico
+  favicon_png: assets/favicon.png
+  favicon_apple: assets/apple-touch-icon.png
   gravatar: # Email MD5 hash
 
   # Header and footer text
