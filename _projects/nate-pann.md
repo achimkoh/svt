@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Text Mining Nate Pann
+title: Text Generation&#58; Nate Pann
 thumbnail: "assets/img/thumbnails/nate.png"
 date: 2017-06-15
 tags: [work in progress]
@@ -8,8 +8,6 @@ index: 8
 ---
 
 [Nate Pann Generator, mockup prototype](https://natepan-157420.appspot.com/){:target="_blank"}
-
-#### previously:
 
 [Nate Pann](http://pann.nate.com) is a popular internet forum in South Korea. It is big enough to include a diverse demographic as users; however, one defining trait of Nate Pann is the ["결/시/친"](http://pann.nate.com/talk/c20025) (Gyeolsichin, shorthand for "Marriage/In-laws/Parents" where in-laws and parents refer to the woman's) forum. Gyeolsichin has an established status as a place where women in distress caused by diverse elements of the patriarchic Korean society come to rant. This characteristic makes it unique compared to other public online communities of comparable sizes, many of which display male-dominant voices. 
 
@@ -19,9 +17,7 @@ First I used character-/phoneme-based n-gram Markov chain models, borrowing code
 
 ![]({{site.baseurl}}/assets/img/portfolio/nate-pann-keras.png)
 
-One difficulty is the high dimensionality of Korean characters, which consist of 24 or 40 alphabets depending on how you count them, but which are [combined into blocks instead of sequences](https://en.wikipedia.org/wiki/Hangul). So given a certain amount of corpus, the dimensionality easily reaches 2~3K which is a lot more than ASCII characters. Fortunately I came into the [hangul-utils](https://github.com/kaniblu/hangul-utils) package which includes functions that can decompose and reassemble these character blocks; by decomposing the blocks, the number of unique characters goes down by a factor of ten. (Though without cleaning it's closer to 3~4.)
-
-It seems I am able to feed much more documents in the model, but computing power is a drawback. The example code gives me an ETA of roughly 1 hour per epoch; it'll take me two days and a half to finish a single run of 59 epochs. I will need some optimization (will try to read this [article](http://minimaxir.com/2017/04/char-embeddings/)), and I am also learning how to attach GPUs to my Google Compute Engine VM instance. In the meantime, the decomposed text fed in the previous Markov model and then reassembled looks promising:
+One difficulty is the high dimensionality of Korean characters, which consist of 24 or 40 alphabets depending on how you count them, but which are [combined into blocks instead of sequences](https://en.wikipedia.org/wiki/Hangul). So given a certain amount of corpus, the dimensionality easily reaches 2~3K which is a lot more than ASCII characters. Fortunately I came into the [hangul-utils](https://github.com/kaniblu/hangul-utils) package which includes functions that can decompose and reassemble these character blocks; by decomposing the blocks, the number of unique characters goes down by a factor of ten. (Though without cleaning it's closer to 3~4.) The decomposed text fed in the previous Markov model and then reassembled looks promising:
 
 ```
 2-grams
@@ -99,7 +95,8 @@ It seems I am able to feed much more documents in the model, but computing power
 차라리 사람에게 연민의 눈빛은 크리스마스날이라고 생각하기도싫어서 그날 저녁
 ```
 
-More updates coming soon. 
+Now I've Insik Kim's [kor-char-rnn-tensorflow](https://github.com/insikk/kor-char-rnn-tensorflow) set up on a Google Compute Engine instance. I will report back once the training is done, and I have some results.
+
 
 #### previously:
 

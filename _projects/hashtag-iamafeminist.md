@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Text Analysis of &#35;나는페미니스트입니다
+title: Text Analysis&#58; &#35;나는페미니스트입니다
 img: "assets/img/portfolio/hashtag-iamafeminist.png"
 thumbnail: "assets/img/thumbnails/hashtag-iamafeminist.jpg"
 date: December 20 2016
