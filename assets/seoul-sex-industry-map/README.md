@@ -12,6 +12,15 @@ http://www.ildaro.com/sub_read.html?uid=7687
 
 -> 궁금해서 직접 찍어볼 예정
 
+Data files (open as of dec 2017 / 2017년 12월 기준 영업중):
+
+- [휴게음식점 식품위생업소 Restaurants - csv](data/restaurants.csv) 
+- [휴게음식점 식품위생업소 Restaurants - json](data/restaurants.geojson) 
+- [단란주점 Karaoke bars - json](data/danlan.geojson)
+- [유흥업소 'Entertainment' bars- json](data/yuheung.geojson)
+- [대부업체 Loans - json](data/loans.geojson)
+- [성형외과 Plastic surgery clinics - json](data/plastic-clinics.geojson)
+
 Data sources:
 
 - open.seoul.go.kr
