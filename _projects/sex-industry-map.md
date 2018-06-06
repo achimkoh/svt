@@ -5,7 +5,7 @@ img: "assets/img/portfolio/seoul-sex-industry-map.png"
 thumbnail: "assets/img/thumbnails/seoul-sex-industry-map.jpg"
 date: Dec 12, 2017
 tags: [work in progress, data visualization]
-index: 11
+index: 6
 ---
 
 [![image]({{ site.baseurl }}/{{ page.img }})]({{ site.baseurl }}/assets/seoul-sex-industry-map/)

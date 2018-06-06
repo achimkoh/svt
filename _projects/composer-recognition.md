@@ -4,7 +4,7 @@ title: Composer Recognition Experiment
 thumbnail: "assets/img/thumbnails/composer-recognition.jpg"
 date: June 24 2017
 tags: [machine learning, music]
-index: 6
+index: 11
 ---
 
 __Recognizing Classical Composers Using High-Level Musical Features__
