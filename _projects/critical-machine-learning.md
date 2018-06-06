@@ -12,7 +12,7 @@ index: 2
 
 [http://criticalml.net/](http://criticalml.net/)
 
-This online resource contains selected readings about machine learning that can help understand basic concepts of machine learning/AI, as well as its characteristics as a technology situated within social contexts. The accompanying [Are.na account](https://www.are.na/critical-machine-learning/) is updated more frequently. This project is intended to serve as a temporary meta-resource amidst a rapidly changing socio-technological environment, so may become obsolete quickly. I hope this is useful in the meantime; it is my small attempt to bridge the technical and the social.
+Critical Machine Learning is an online resource that contains selected readings about machine learning that can help understand basic concepts of machine learning/AI, as well as its characteristics as a technology situated within social contexts. The project is an attempt to communicate both technical and socio-scientific knowledge. The accompanying [Are.na account](https://www.are.na/critical-machine-learning/) is updated more frequently. This project is intended to serve as a temporary meta-resource amidst a rapidly changing socio-technological environment, so may become obsolete quickly. I hope this is useful in the meantime.
 
 This project was initially conducted as an independent study project for the Interactive Technology and Pedagogy certificate program at the Graduate Center, CUNY where I was advised by the super [Maura Smale](https://maurasmale.com/). 
 
