@@ -1,8 +1,8 @@
 ---
 layout: post
 title: Critical Machine Learning
-img: "assets/img/portfolio/critical-machine-learning.png"
-thumbnail: "assets/img/thumbnails/critical-machine-learning.png"
+img: "assets/img/portfolio/critical-machine-learning.gif"
+thumbnail: "assets/img/thumbnails/critical-machine-learning.gif"
 date: 7 December 2017
 tags: [education]
 index: 2
