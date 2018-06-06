@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset='utf-8' />
+</head>
+<script src="https://d3js.org/d3.v5.min.js"></script>
+
+<body>
+	Does a certain GeoJSON point fall into a polygon?<br>
+	<a href="#" id="link" download="seoul.withCount.json">
+ 		Download as JSON
+	</a>
+</body>
+</html>
+
+<script>
+	let seoul, loans, clinics, danlan, yuheung, convenience, fastfood, cafe;
+    d3.json("/data/loans.min.geojson").then(data=>{loans=data})
+    .then( ()=>d3.json("/data/plastic-clinics.min.geojson") ).then(data=>{clinics=data})
+    .then( ()=>d3.json("/data/danlan.min.geojson") ).then(data=>{danlan=data})
+    .then( ()=>d3.json("/data/yuheung.min.geojson") ).then(data=>{yuheung=data})
+    .then( ()=>d3.json("/data/convenience.min.geojson") ).then(data=>{convenience=data})
+    .then( ()=>d3.json("/data/fastfood.min.geojson") ).then(data=>{fastfood=data})
+    .then( ()=>d3.json("/data/cafe.min.geojson") ).then(data=>{cafe=data})
+    .then( ()=>d3.json("/data/seoul_neighborhoods_geo_simple.json") ).then( (data)=>{seoul=data} )
+	.then( ()=> { 
+		seoul.features.forEach( (neighborhood) => {
+	        // set counter for each type of business
+	        neighborhood.properties.numLoans = neighborhood.properties.numClinics = neighborhood.properties.numDanlan = neighborhood.properties.numYuheung = neighborhood.properties.numConvenience = neighborhood.properties.numFastfood = neighborhood.properties.numCafe = 0;
+	        // count everything 
+	        loans.features.forEach( (business) => {
+	            if ( d3.geoContains(neighborhood, business.geometry.coordinates) ) neighborhood.properties.numLoans++; 
+	        });
+	        clinics.features.forEach( (business) => {
+	            if ( d3.geoContains(neighborhood, business.geometry.coordinates) ) neighborhood.properties.numClinics++; 
+	        });
+	        danlan.features.forEach( (business) => {
+	            if ( d3.geoContains(neighborhood, business.geometry.coordinates) ) neighborhood.properties.numDanlan++; 
+	        });
+	        yuheung.features.forEach( (business) => {
+	            if ( d3.geoContains(neighborhood, business.geometry.coordinates) ) neighborhood.properties.numYuheung++; 
+	        });
+	        convenience.features.forEach( (business) => {
+	            if ( d3.geoContains(neighborhood, business.geometry.coordinates) ) neighborhood.properties.numConvenience++; 
+	        });
+	        fastfood.features.forEach( (business) => {
+	            if ( d3.geoContains(neighborhood, business.geometry.coordinates) ) neighborhood.properties.numFastfood++; 
+	        });
+	        cafe.features.forEach( (business) => {
+	            if ( d3.geoContains(neighborhood, business.geometry.coordinates) ) neighborhood.properties.numCafe++; 
+	        });
+	    });
+	    console.log('counting done');
+
+		// Get the file contents
+		let txtFile = "test.txt";
+		let file = new File([txtFile], "");
+		let str = JSON.stringify(seoul);
+
+		//Save the file contents as a DataURI
+		let dataUri = 'data:application/json;charset=utf-8,'+ encodeURIComponent(str);
+
+		//Write it as the href for the link
+		let link = document.getElementById('link').href = dataUri;
+	}).then(()=>console.log('done'));
+
+    // seoul.features.forEach( (neighborhood) => console.log( neighborhood.properties.EMD_KOR_NM, neighborhood.properties.numClinics ) );
+
+
+
+</script>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset='utf-8' />
+</head>
+<script src="https://d3js.org/d3.v5.min.js"></script>
+<script src='https://npmcdn.com/@turf/turf/turf.min.js'></script>
+
+<body>
+	Does a certain GeoJSON point fall into a polygon?<br>
+	<a href="#" id="link" download="seoul-neighborhoods-geo-density.json">
+ 		Download as JSON
+	</a>
+</body>
+</html>
+
+<script>
+	let seoul;
+    d3.json("/data/seoul_neighborhoods_geo_counts.json").then( data => {
+    	seoul=data;
+		seoul.features.forEach( (neighborhood) => {
+			neighborhood.properties.areaSize = turf.area(neighborhood.geometry);
+			neighborhood.properties.densityLoans = neighborhood.properties.numLoans / neighborhood.properties.areaSize;
+			neighborhood.properties.densityClinics = neighborhood.properties.numClinics / neighborhood.properties.areaSize;
+			neighborhood.properties.densityDanlan = neighborhood.properties.numDanlan / neighborhood.properties.areaSize;
+			neighborhood.properties.densityYuheung = neighborhood.properties.numYuheung / neighborhood.properties.areaSize;
+			neighborhood.properties.densityConvenience = neighborhood.properties.numConvenience / neighborhood.properties.areaSize;
+			neighborhood.properties.densityFastfood = neighborhood.properties.numFastfood / neighborhood.properties.areaSize;
+			neighborhood.properties.densityCafe = neighborhood.properties.numCafe / neighborhood.properties.areaSize;
+	    });
+	    console.log('area calculation done');
+
+	    // should I normalize this?
+	    let densityClinicsArray = [], densityDanlanArray = [], densityYuheungArray = [], densityConvenienceArray = [], densityFastfoodArray = [], densityCafeArray = [], densityLoansArray = [];
+		seoul.features.forEach( (neighborhood) => {
+			densityLoansArray.push(neighborhood.properties.densityLoans);
+			densityClinicsArray.push(neighborhood.properties.densityClinics);
+			densityDanlanArray.push(neighborhood.properties.densityDanlan);
+			densityYuheungArray.push(neighborhood.properties.densityYuheung);
+			densityConvenienceArray.push(neighborhood.properties.densityConvenience);
+			densityFastfoodArray.push(neighborhood.properties.densityFastfood);
+			densityCafeArray.push(neighborhood.properties.densityCafe);
+		} );
+
+		let densityLoansRatio = Math.max.apply(Math, densityLoansArray);
+		let densityClinicsRatio = Math.max.apply(Math, densityClinicsArray);
+		let densityDanlanRatio = Math.max.apply(Math, densityDanlanArray);
+		let densityYuheungRatio = Math.max.apply(Math, densityYuheungArray);
+		let densityConvenienceRatio = Math.max.apply(Math, densityConvenienceArray);
+		let densityFastfoodRatio = Math.max.apply(Math, densityFastfoodArray);
+		let densityCafeRatio = Math.max.apply(Math, densityCafeArray);
+		seoul.features.forEach( (neighborhood) => {
+			neighborhood.properties.densityLoansNormalized = neighborhood.properties.densityLoans / densityLoansRatio;
+			neighborhood.properties.densityClinicsNormalized = neighborhood.properties.densityClinics / densityClinicsRatio;
+			neighborhood.properties.densityDanlanNormalized = neighborhood.properties.densityDanlan / densityDanlanRatio;
+			neighborhood.properties.densityYuheungNormalized = neighborhood.properties.densityYuheung / densityYuheungRatio;
+			neighborhood.properties.densityConvenienceNormalized = neighborhood.properties.densityConvenience / densityConvenienceRatio;
+			neighborhood.properties.densityFastfoodNormalized = neighborhood.properties.densityFastfood / densityFastfoodRatio;
+			neighborhood.properties.densityCafeNormalized = neighborhood.properties.densityCafe / densityCafeRatio;
+		});
+
+		// Get the file contents
+		let txtFile = "test.txt";
+		let file = new File([txtFile], "");
+		let str = JSON.stringify(seoul);
+		//Save the file contents as a DataURI
+		let dataUri = 'data:application/json;charset=utf-8,'+ encodeURIComponent(str);
+		//Write it as the href for the link
+		let link = document.getElementById('link').href = dataUri;
+	}).then(()=>console.log('all done'));
+</script>
