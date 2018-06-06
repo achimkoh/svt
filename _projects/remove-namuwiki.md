@@ -4,7 +4,7 @@ title: Remove Namuwiki
 img: "assets/img/portfolio/remove-namuwiki.png"
 thumbnail: "assets/img/thumbnails/remove-namuwiki.jpg"
 date: 2018-03-26
-tags: [work in progress]
+tags: []
 index: 3
 ---
 
@@ -37,3 +37,8 @@ Rather, we need to reduce the level of hate that circulates in the public space 
 ---
 
 Adapted from Guillermo Maiolo's *[Remove W3Schools](https://github.com/GMaiolo/remove-w3schools)*
+
+To do
+
+- Port for Firefox
+- Add other search engines: Naver, Daum, Duckduckgo
