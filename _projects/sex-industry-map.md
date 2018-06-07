@@ -24,6 +24,15 @@ I first scraped Seoul's business registries from these data sources:
 - [https://open.seoul.go.kr](https://open.seoul.go.kr)
 - [http://data.go.kr](http://data.go.kr) 건강보험심사평가원 병원정보서비스 (Medical clinic information) API
 
+Data files (open as of dec 2017 / 2017년 12월 기준 영업중):
+
+- [휴게음식점 식품위생업소 Restaurants - csv](data/restaurants.csv) 
+- [휴게음식점 식품위생업소 Restaurants - json](data/restaurants.geojson) 
+- [단란주점 Karaoke bars - json](data/danlan.geojson)
+- [유흥업소 'Entertainment' bars- json](data/yuheung.geojson)
+- [대부업체 Loans - json](data/loans.geojson)
+- [성형외과 Plastic surgery clinics - json](data/plastic-clinics.geojson)
+
 Then I converted addresses to coordinates using the Naver API and selected businesses that are currently active, plotting them using Mapbox. The map has layers for lending services (대부업체), plastic surgery clinics (성형외과), hostess bars (단란주점, 유흥업소), coffee shops, convenience stores, and fast food restaurants; the last three being proxies for an area's overall commercial activity. 
 
 Then I imported municipality border data from [Lucy Park's Github repo](https://github.com/southkorea/seoul-maps) (after much frustration over painfully restrictive access to public datasets, mainly due to the fact that I live abroad and am unable to use SMS authentication through a Korean carrier), and used d3 and turf.js to calculate the density of each business type per area. The density is used to determine each municipality polygon's color opacity.
