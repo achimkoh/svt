@@ -96,14 +96,16 @@
 }
 
 @media screen and (max-width: $break) {
-/*    .site-header {
-        img.avatar {
+    .site-header {
+/*        img.avatar {
             margin-top: -7px
-        }
+        } */
         .site-title {
-            margin-top: 7px;
+            margin-top: 0.25em; 
+            font-size: 1em;
+            line-height: 1.5em;
         }
-    }*/
+    }
 
     nav {
         height: auto;
@@ -166,5 +168,11 @@
 @media screen and (max-width: $sm-break) {
     .separator {
         display: none !important;
+    }
+    .site-header {
+        .site-title {
+            font-size: 0.9em;
+            font-weight: normal;
+        }
     }
 }
