@@ -4,7 +4,7 @@ title: Corporate Desires
 img: "assets/img/portfolio/corporate-desires.png"
 thumbnail: "assets/img/thumbnails/corporate-desires.gif"
 date: Jan 2018
-tags: [work in progress, data visualization]
+tags: [work in progress, data visualization, development]
 index: 13
 ---
 

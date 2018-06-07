@@ -3,7 +3,7 @@ layout: post
 title: Composer Recognition Experiment
 thumbnail: "assets/img/thumbnails/composer-recognition.jpg"
 date: June 24 2017
-tags: [machine learning, music]
+tags: [machine learning, music, research]
 index: 11
 ---
 

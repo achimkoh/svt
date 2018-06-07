@@ -4,7 +4,7 @@ title: Korean Internet Tour Guide
 img: "assets/img/portfolio/k-www.gif"
 thumbnail: "assets/img/thumbnails/k-www.gif"
 date: November 15 2016
-tags: [media archaeology, public event]
+tags: [media archaeology, public event, research, translation]
 index: 1
 ---
 

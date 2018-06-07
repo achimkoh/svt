@@ -4,6 +4,7 @@ title: Translations and Editing
 subtitle: 
 thumbnail: "assets/img/thumbnails/translate.png"
 index: 18
+tags: [translation]
 ---
 
 I work in English, French, and Korean for publications, art exhibitions, and technical projects, and more. I especially enjoy working with texts that involve knowledge of art and critical theory, digital technology, and music.

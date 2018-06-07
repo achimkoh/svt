@@ -4,7 +4,7 @@ title: Critical Machine Learning
 img: "assets/img/portfolio/critical-machine-learning.gif"
 thumbnail: "assets/img/thumbnails/critical-machine-learning.gif"
 date: 7 December 2017
-tags: [machine learning, education]
+tags: [machine learning, education, research]
 index: 2
 ---
 

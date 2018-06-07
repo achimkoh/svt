@@ -16,6 +16,9 @@
     .portfolio-item {
         right: 0;
         margin: 0 0 15px;
+        -webkit-transition: -webkit-transform ease .3s;
+        -moz-transition: -moz-transform ease .3s;
+        transition: transform ease .3s;
 
         @media(min-width: 767px) {
             margin: 0 0 30px;

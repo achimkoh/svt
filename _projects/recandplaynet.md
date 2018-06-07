@@ -4,7 +4,7 @@ title: recandplay.net
 img: "assets/img/portfolio/recandplaynet.png"
 thumbnail: "assets/img/thumbnails/recandplaynet.png"
 date: 2012-05-26
-tags: [music]
+tags: [music, translation]
 index: 9
 ---
 

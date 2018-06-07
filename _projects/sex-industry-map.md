@@ -4,7 +4,7 @@ title: Sex Industry and Predatory Lending
 img: "assets/img/portfolio/seoul-sex-industry-map.png"
 thumbnail: "assets/img/thumbnails/seoul-sex-industry-map.jpg"
 date: Dec 12, 2017
-tags: [work in progress, data visualization]
+tags: [work in progress, data visualization, development]
 index: 6
 ---
 

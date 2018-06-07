@@ -4,7 +4,7 @@ title: Tools for Clear Speech
 img: "assets/img/portfolio/tfcs-tfcs.png"
 thumbnail: "assets/img/thumbnails/tfcs.png"
 date: Jan 2, 2018
-tags: []
+tags: [development]
 index: 14
 ---
 

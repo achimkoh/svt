@@ -9,3 +9,8 @@ layout: default
   {% include tags_list.html tags=tag_list %}
     
 </article>
+
+<!-- remove links from splash text, they should only appear on the portfolio page -->
+<script>
+	$('.call-out a.trigger').each(function(){console.log($(this).replaceWith($(this).text()))});
+</script>

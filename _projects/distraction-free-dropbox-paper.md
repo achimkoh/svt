@@ -4,7 +4,7 @@ title: Distraction-free Dropbox Paper
 img: "assets/img/portfolio/dfdp.png"
 thumbnail: "assets/img/thumbnails/dfdp.jpg"
 date: 2018-04-03
-tags: []
+tags: [development]
 index: 17
 ---
 

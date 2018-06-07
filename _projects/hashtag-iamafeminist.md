@@ -4,7 +4,7 @@ title: Text Analysis&#58; &#35;나는페미니스트입니다
 img: "assets/img/portfolio/hashtag-iamafeminist.png"
 thumbnail: "assets/img/thumbnails/hashtag-iamafeminist.jpg"
 date: December 20 2016
-tags: [data visualization, work in progress]
+tags: [data visualization, work in progress, research]
 index: 8
 ---
 

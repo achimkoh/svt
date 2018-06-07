@@ -3,7 +3,7 @@
     <div class="row">
         {% assign projects = site.projects | sort: 'index' %}
         {% for item in projects %}
-        <div class="col-sm-4 col-xs-6 portfolio-item">
+        <div class="col-sm-4 col-xs-6 portfolio-item {% if item.tags contains 'research' %} research{% endif %}{% if item.tags contains 'development' %} development{% endif %}{% if item.tags contains 'translation' %} translation{% endif %}">
             <a href="{{ site.baseurl }}{{ item.url }}" class="portfolio-link" data-keyboard="true">
                 <div class="caption" title="{{ item.title }}">
                     <div class="caption-content">
@@ -22,3 +22,33 @@
         {% endfor %}
     </div>
 </section>
+
+<!-- Portfolio manipulation: triggered by clicks in splash text -->
+<script>
+    // select text to act as trigger
+    $('a.trigger.research').click(() => {
+        $('.portfolio-item.research').get().reverse().forEach((e) => { 
+            $( e ).insertBefore($('.portfolio-item')[0]);
+            setTimeout(()=>$( e ).css('transform', 'scale(1.05)'),10);
+            setTimeout(()=>$( e ).css('transform', 'scale(1)'),300);
+        })
+    });
+    $('a.trigger.development').click(() => {
+        $('.portfolio-item.development').get().reverse().forEach((e) => {
+            $( e ).insertBefore($('.portfolio-item')[0]);
+            setTimeout(()=>$( e ).css('transform', 'scale(1.05)'),10);
+            setTimeout(()=>$( e ).css('transform', 'scale(1)'),300);
+        })
+    });
+    $('a.trigger.translation').click(() => {
+        $('.portfolio-item.translation').get().reverse().forEach((e) => {
+            $( e ).insertBefore($('.portfolio-item')[0]);
+            setTimeout(()=>$( e ).css('transform', 'scale(1.05)'),10);
+            setTimeout(()=>$( e ).css('transform', 'scale(1)'),300);
+        })
+    });
+
+    // this reverses everything
+    // $('.portfolio-item').each(function() {$( this ).insertBefore($('.portfolio-item')[0])})
+
+</script>

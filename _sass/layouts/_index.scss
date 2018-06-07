@@ -32,7 +32,12 @@
     h3,
     h4,
     h5 {
-        @extend .header-txt-shadow;
+        /* @extend .header-txt-shadow; */
+    }
+
+    a:hover {
+        color: #22527b;
+        cursor: pointer;
     }
 
     p:last-child {

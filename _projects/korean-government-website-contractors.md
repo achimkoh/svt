@@ -4,7 +4,7 @@ title: Korean Government Website Contractors
 img: "assets/img/portfolio/gov-websites.png"
 thumbnail: "assets/img/thumbnails/gov-websites.jpg"
 date: 2016-06-01 
-tags: [data visualization]
+tags: [data visualization, research]
 index: 15
 ---
 

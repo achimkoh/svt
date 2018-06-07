@@ -4,7 +4,10 @@
     
     <!-- Main JS (navbar.js, katex_init.js and masonry_init.js)-->
     <script defer=true src="{{ site.baseurl }}/assets/js/main.min.js"></script>
-    
+
+    <!-- jQuery, to move elements around -->
+    <script src="{{ site.baseurl }}/assets/js/jquery-3.3.1.slim.min.js"></script>
+
     <!-- CSS -->
     <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/main.css">
 
@@ -12,7 +15,6 @@
     <link rel="shortcut icon" href="{{ site.baseurl }}/{{ site.theme_settings.favicon }}" type="image/x-icon">
     <link rel="icon" type="image/png" sizes="32x32" href="{{ site.baseurl }}/{{ site.theme_settings.favicon_png }}">
     <link rel="apple-touch-icon" sizes="180x180" href="{{ site.baseurl }}/{{ site.theme_settings.favicon_apple }}">
-
 
     <!-- Canonical -->
     <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
@@ -63,6 +65,6 @@
     <!--
     <title>{% if page.title %}{{ page.title }} |{% endif %} {{ site.theme_settings.title }}</title>
     <meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.theme_settings.description }}{% endif %}">
-    -->
+    -->    
 
 </head>

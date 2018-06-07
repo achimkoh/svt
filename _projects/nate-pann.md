@@ -4,7 +4,7 @@ title: Nate Pann RNN
 img: "assets/img/portfolio/nate-pann-rnn.png"
 thumbnail: "assets/img/thumbnails/nate-pann-rnn.png"
 date: 2017-06-15
-tags: [machine learning, work in progress]
+tags: [machine learning, work in progress, development]
 index: 4
 ---
 
