@@ -24,7 +24,7 @@ I first scraped Seoul's business registries from these data sources:
 - [https://open.seoul.go.kr](https://open.seoul.go.kr)
 - [http://data.go.kr](http://data.go.kr) 건강보험심사평가원 병원정보서비스 (Medical clinic information) API
 
-Data files (open as of dec 2017 / 2017년 12월 기준 영업중):
+Data files after some cleaning and coordinates conversion (open as of Dec 2017):
 
 - [휴게음식점 식품위생업소 Restaurants - csv](/assets/seoul-sex-industry-map/data/restaurants.csv) 
 - [휴게음식점 식품위생업소 Restaurants - json](/assets/seoul-sex-industry-map/data/restaurants.geojson) 
