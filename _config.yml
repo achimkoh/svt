@@ -2,7 +2,7 @@
 baseurl: ""
 url: "https://scalarvectortensor.net"
 title: Koh Achim # site's title
-description: "Researcher in digital technology, art, music, AI, machine learning, data visualization, and the web" # used by search engines
+description: "digital art, music, machine learning, and the web" # used by search engines
 
 # THEME-SPECIFIC CONFIGURATION
 theme_settings:
