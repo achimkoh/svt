@@ -2,6 +2,7 @@
 layout: post
 title: Making Lab
 feature-img: "assets/img/portfolio/makinglab.jpg"
+img: "assets/img/portfolio/makinglab.jpg"
 thumbnail: "assets/img/thumbnails/makinglab.jpg"
 date: August, 16 2014
 tags: [education, public event, research]

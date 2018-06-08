@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Translations and Editing
-subtitle: 
+img: "assets/img/thumbnails/translate.png"
 thumbnail: "assets/img/thumbnails/translate.png"
 index: 18
 tags: [translation]

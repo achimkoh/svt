@@ -2,6 +2,7 @@
 layout: post
 title: Sonic Wire Sculptor port, p5.js
 thumbnail: "assets/img/thumbnails/sws-p5js.jpg"
+img: "assets/img/thumbnails/sws-p5js.jpg"
 date: 2017-05-31
 tags: [work in progress, music, development]
 index: 10

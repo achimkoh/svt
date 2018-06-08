@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Sonic Wire Sculptor Copy
+img: "assets/img/thumbnails/sws-2015.jpg"
 thumbnail: "assets/img/thumbnails/sws-2015.jpg"
 date: 2015-05-31
 tags: [music, development]
