@@ -85,6 +85,13 @@
             }
         }
     }
+
+    .portfolio-item.filtered-out {
+        filter: opacity(50%) grayscale(50%);
+        &:hover {
+            filter: none;
+        }
+    }
 }
 
 /* --- Responsive --- */
