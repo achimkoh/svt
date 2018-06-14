@@ -4,7 +4,7 @@ title: South Korean Municipalities won by Women
 img: "assets/img/portfolio/south-korea-municipal-election-2018.png"
 thumbnail: "assets/img/thumbnails/south-korea-municipal-election-2018.gif"
 date: June 14, 2018
-tags: [data visualization]
+tags: []
 index: 
 ---
 
@@ -20,7 +20,7 @@ Despite the bleak landscape, I was encouraged by great efforts from women such a
 
 풍경이 어둡지만, 페미니스트 플랫폼을 기반으로 지지율 4위를 기록하며 선전한 녹색당 신지예 서울시장 후보 등 여성들의 분전을 보며 용기를 얻기도 했다.
 
-![Municipalities won by women in the 2018 Korean local elections]({{ site.baseurl }}/{{ page.img }})
+![Municipalities won by women in the 2018 South Korean local elections]({{ site.baseurl }}/{{ page.img }})
 
 [구시군장 여성 당선자](http://www.womennews.co.kr/news/142666)
 
