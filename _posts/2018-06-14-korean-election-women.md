@@ -4,8 +4,6 @@ title: South Korean Municipalities won by Women
 img: "assets/img/portfolio/south-korea-municipal-election-2018.png"
 thumbnail: "assets/img/thumbnails/south-korea-municipal-election-2018.gif"
 date: June 14, 2018
-tags: []
-index: 
 ---
 
 South Korean local elections were held yesterday. It is a country where women in politics are notably underrepresented; for instance, the 2016 legislative election saw 51 women lawmakers enter the National Assembly, or 17% of the 300 total seats. This ratio, [which ranks quite low internationally](http://archive.ipu.org/wmn-e/classif.htm), was nevertheless the highest the country has ever seen.
