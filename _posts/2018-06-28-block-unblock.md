@@ -1,8 +1,8 @@
 ---
 layout: post
 title: 파이썬으로 블언블
-img: "assets/img/portfolio/south-korea-municipal-election-2018-2.png"
-thumbnail: "assets/img/thumbnails/south-korea-municipal-election-2018.gif"
+img: ""
+thumbnail: ""
 date: June 28, 2018
 ---
 
