@@ -23,7 +23,7 @@ In order to answer this question I used data from the Korea ON-Line E-Procuremen
 
 First, some basic exploration of the data. The data from KONEPS contains a range of information: auction id number, auction title, auction category, procuring agency, winning business’ registration number, date, number of reauctions, number of bidders, winner, bidding amount, bidding rate, english name of winning company, its CEO, company address, phone, and url. 
 
-<iframe title="6000 auctions, by winning bid and total bidders" width="100%"  height="720" frameborder="0" seamless="seamless" scrolling="no" src="{{site.baseurl}}/assets/gov-websites/graph1"></iframe>
+<iframe title="6000 auctions, by winning bid and total bidders" width="100%"  height="720" frameborder="0" seamless="seamless" scrolling="no" src="{{site.url}}/assets/gov-websites/graph1"></iframe>
 
 Here I plotted all ~6K auctions by bidding amount: the red histogram shows the distribution of auctions over winning bid, and the blue line shows the mean average number of bidders. We can see that most auctions fall between 10M KRW and 100M KRW, and that those tend to be more competitive than auctions won by bids higher than 100M KRW. (~= 85K USD)
 
@@ -45,7 +45,7 @@ Throughout the average year, the number of successful auctions tend to be stable
 
 This is a list of all businesses that won an auction in the dataset, plus company information and amount of money won:
 
-<iframe title="full dataset" width="100%" height="825" frameborder="0" seamless="seamless" src="{{site.baseurl}}/assets/gov-websites/graph2"></iframe>
+<iframe title="full dataset" width="100%" height="825" frameborder="0" seamless="seamless" src="{{site.url}}/assets/gov-websites/graph2"></iframe>
 
 One thing to note is that approximately 22% of these companies do not have a website url listed in the KONEPS database, when these auctions all are web-related—most of them web development projects. It is also interesting to look at the websites of the higher-grossing companies; many of them are quite outdated. A company’s own website seems not to be a big factor in obtaining a bid. One company that caught my attention is ASADAL INC. (http://www.asadal.com/) This company specializes in government system integration tasks, and their website’s overcrowded design symbolizes many things that I find distinctive of the South Korean web.  
 
