@@ -7,7 +7,7 @@ splash: true
 
 {% include get_random_background.html %}
 
-He is currently working on a [case study of Google Magenta](https://www.are.na/achim-koh/music-art-ai) that attempts to contextualize recent industrial interests in musical applications of AI with regards to music technology and capitalism, towards his MA in Liberal Studies at the Graduate Center, CUNY. 
+His recent master's thesis at the Graduate Center, CUNY is a [case study of Google Magenta](https://www.are.na/achim-koh/music-art-ai) that attempts to contextualize recent industrial interests in musical applications of AI with regards to music technology and capitalism.
 
 In the recent past he has compiled an [online machine learning resource](http://criticalml.net/) for a critical and balanced understanding and usage, and worked on a series of projects that engage with [the history and idiosyncracy of the South Korean web](http://k-www.kr/en). Before that, he worked as researcher-coordinator in a [makerspace](https://4.apap.or.kr/en/makinglab/) within the 4th Anyang Public Art Project; and made a [video series](http://recandplay.net/) of live music performances in urban settings.
 
