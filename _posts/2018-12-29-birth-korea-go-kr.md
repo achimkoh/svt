@@ -5,7 +5,7 @@ img: "assets/img/birth-korea-go-kr.png"
 date: December 29, 2018
 ---
 
-link: https://webrecorder.io/achim/birthkoreagokr
+link: [https://webrecorder.io/achim/birthkoreagokr](https://webrecorder.io/achim/birthkoreagokr)
 
 2016년 12월 29일 행정자치부가 "대한민국 출산지도" 웹사이트(http://birth.korea.go.kr)를 런칭했다. 소개 페이지에서는 사업 취지를 "출산율 저하로 인구감소 위기에 대응하기 위해 국민들에게 지역별 저출산 문제 심각성을 알기 쉽게 알려주고 저출산 극복을 위해 다함께 참여하는 분위기 조성"이라고 설명했다. 이 웹사이트는 출산율 관련 통계와 정책 정보에 더해 "출산지도"라는 인터랙티브 데이터시각화 지도를 선보였는데, 시각화된 통계자료 중 하나로 지역별 가임기 여성 수가 있었다.
 
