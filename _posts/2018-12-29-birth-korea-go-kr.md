@@ -15,7 +15,7 @@ link: [https://webrecorder.io/achim/birthkoreagokr](https://webrecorder.io/achim
 
 출산지도 웹사이트는 공개된 당일인 12월 29일 서비스가 중단되고 시스템 점검 오류 메시지를 표시하기 시작했다. 지금은 존재하지 않는 사이트지만, 문제의 출산지도를 포함해 일부 페이지들은 이 묶음에 저장되어 있다. (하나씩 저장하던 중 웹사이트 서비스가 중단됐다)
 
-인터랙티브 지도가 안 보이면서 에러가 뜰 때는 상단 옵션에서 브라우저를 파이어폭스(v49) 에뮬레이터로 설정하면 해결된다.
+인터랙티브 지도가 안 보이면서 에러가 뜰 때는 상단 주소창 바로 왼쪽 옵션에서 브라우저를 Current Browser나 파이어폭스(v49) 에뮬레이터로 설정하면 해결된다.
 
 The South Korean Ministry of the Interior (MoI) launched birth.korea.go.kr, a website that aimed to promote public awareness about the country's population decline, on Dec 29, 2016. The website provided birth rate-related statistics and policy information, and featured a "Birth Map" interactive data visualization that displayed, among other statistics, fertile female population by municipal region.
 
@@ -25,4 +25,4 @@ The website quickly became the subject of Twitter public outrage, like the tweet
 
 The website was taken down the same day, displaying a "system maintenance" error message. This collection is a partial collection of the original website (it was taken down while I was archiving it).
 
-The interactive map may not display properly, and show an error message instead; choosing the Firefox v49 emulated browser from the top menu might fix it.
+The interactive map may not display properly, and show an error message instead; choosing the Firefox v49 emulated browser or Current Browser in the option left to the address bar could fix it.
