@@ -30,6 +30,14 @@
         {% endif %}
         {% endfor %} 
 
+        <!-- Manual link to blog -->
+        <li class="separator"> | </li>
+        <li>
+            <a class="clear" href="/blog">
+                Blog
+            </a>
+        </li>
+
         <!-- Manual link to index.html aka Projects page -->
         <li class="separator"> | </li>
         <li>
@@ -37,7 +45,6 @@
                 Projects
             </a>
         </li>
-
         
         <!-- Auto Generation of SPECIAL pages in the navbar -->
         {% for item in site.theme_settings.special_page %}
