@@ -17,6 +17,11 @@ link: [https://webrecorder.io/achim/birthkoreagokr](https://webrecorder.io/achim
 
 인터랙티브 지도가 안 보이면서 에러가 뜰 때는 상단 주소창 바로 왼쪽 옵션에서 브라우저를 Current Browser나 파이어폭스(v49) 에뮬레이터로 설정하면 해결된다.
 
+함께 보면 좋은 자료
+
+- 한겨레 팔로업 기사. [‘가임기 여성지도’ 이렇게 탄생했다. 정유경.][1]
+- 페미위키 관련항목. [대한민국 출산지도(행정자치부)][2]
+
 The South Korean Ministry of the Interior (MoI) launched birth.korea.go.kr, a website that aimed to promote public awareness about the country's population decline, on Dec 29, 2016. The website provided birth rate-related statistics and policy information, and featured a "Birth Map" interactive data visualization that displayed, among other statistics, fertile female population by municipal region.
 
 This last statistic proved especially problematic. In addition to being not very informative (the absolute number of women was visualized, which provides little insight given that South Korea regions vary vastly in terms of surface area and population density), the decision to include this particular information in a public-oriented campaign seemed to reveal the government's dogmatic perspective on population decline. First, the public announcement of such a statistic and regional comparisons serves as a top-down pressure on municipalities to 'improve their numbers'; second, it can also be read as an indirect blame-shifting towards women, who despite being fertile chose not sufficiently enough to give birth, leading to the national problem. Perhaps most problematic of all is the understanding of fertile women as underutilized resources that need to be mobilized or exploited.
@@ -26,3 +31,6 @@ The website quickly became the subject of Twitter public outrage, like the tweet
 The website was taken down the same day, displaying a "system maintenance" error message. This collection is a partial collection of the original website (it was taken down while I was archiving it).
 
 The interactive map may not display properly, and show an error message instead; choosing the Firefox v49 emulated browser or Current Browser in the option left to the address bar could fix it.
+
+[1]: http://www.hani.co.kr/arti/society/society_general/778266.html
+[2]: https://femiwiki.com/w/%EB%8C%80%ED%95%9C%EB%AF%BC%EA%B5%AD%20%EC%B6%9C%EC%82%B0%EC%A7%80%EB%8F%84(%ED%96%89%EC%A0%95%EC%9E%90%EC%B9%98%EB%B6%80)
