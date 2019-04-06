@@ -5,7 +5,7 @@ img: "assets/img/portfolio/remove-namuwiki.png"
 thumbnail: "assets/img/thumbnails/remove-namuwiki.jpg"
 date: 2018-03-26
 tags: [development]
-index: 3
+index: 18
 ---
 
 ![screenshot of this browser extension in action]({{ site.baseurl}}/{{ page.img }})
