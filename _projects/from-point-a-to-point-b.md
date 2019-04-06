@@ -1,8 +1,8 @@
 ---
 layout: post
 title: From Point A to Point B
-img: "assets/img/portfolio/nate-pann-rnn.png"
-thumbnail: "assets/img/thumbnails/nate-pann-rnn.png"
+img: "assets/img/portfolio/fromatob.gif"
+thumbnail: "assets/img/thumbnails/fromatob.gif"
 date: 2019-04-02
 tags: [data visualization, generative text, development]
 index: 3
@@ -10,7 +10,7 @@ index: 3
 
 From Point A to Point B generates fictional accounts of real trips taken by real people that exist in public data sets.
 
-# About
+### About
 
 What happens in the empty space between data points?
 
@@ -26,6 +26,6 @@ From Point A to Point B nods to this data-based attempt to guess the in-between 
 
 This work is an illustration of data methodologies’ reliance on guesswork and assumptions, which invent numbers where measurements do not exist. At the same time, it is a poetic exploration of people’s experience rendered invisible through its abstraction into numbers.
 
-# Credits
+### Credits
 
 From Point A to Point B is by Achim Koh and [Wonyoung So](https://wonyoung.so). It was made for, exhibited at and supported by [Data Through Design 2019](http://2019.datathroughdesign.com/).
