@@ -1,7 +1,8 @@
 ---
 layout: post
 title: From Point A to Point B
-img: "assets/img/portfolio/fromatob.gif"
+img: "assets/img/portfolio/fromatob-app.png"
+img_two: "assets/img/portfolio/fromatob-pdf.png"
 thumbnail: "assets/img/thumbnails/fromatob.gif"
 date: 2019-04-02
 tags: [data visualization, generative text, development]
@@ -9,6 +10,8 @@ index: 3
 ---
 
 From Point A to Point B generates fictional accounts of real trips taken by real people that exist in public data sets.
+
+![screenshot of app that shows a google street view snapshot on the top half, and a generated route on the bottom half]({{ site.baseurl }}/{{ page.img }})
 
 ### About
 
@@ -23,6 +26,8 @@ The NYC Open Data platform provides data on the taxi and bicycle trips of New Yo
 Using the starting and ending points included in bicycle and taxi trip data sets, the piece imagines the unrepresented and undocumented experience of the traveler during their journey in the in-between space. The trip data include timestamps that indicate when events occurred, which this work uses to choose a trip that happened in the corresponding time of day. A custom program estimates the route of the journey and extracts points of interest (landmarks, businesses, etc) around the route. The program then generates a fictional narrative of the journey that the traveler could have experienced, but almost certainly did not. 
 
 From Point A to Point B nods to this data-based attempt to guess the in-between spaces, the fissures of data. However, it also acknowledges the fundamental irreconcilability of data and the world it represents. Instead of trying to render the world into an ‘accurate’ fixed state, we explore the different potential states opened up by the sparsity of data. We take the idea of inventing realities quite literally, creating speculative accounts based on people’s journeys documented in open data sets.
+
+![screenshot of generated fiction]({{ site.baseurl }}/{{ page.img_two }})
 
 This work is an illustration of data methodologies’ reliance on guesswork and assumptions, which invent numbers where measurements do not exist. At the same time, it is a poetic exploration of people’s experience rendered invisible through its abstraction into numbers.
 
