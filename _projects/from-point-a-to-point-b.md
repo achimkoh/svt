@@ -1,7 +1,7 @@
 ---
 layout: post
 title: From Point A to Point B
-img: "assets/img/portfolio/fromatob-app.png"
+img: "assets/img/portfolio/fromatob-installation.jpg"
 img_two: "assets/img/portfolio/fromatob-pdf.png"
 thumbnail: "assets/img/thumbnails/fromatob.gif"
 date: 2019-04-02
@@ -11,7 +11,7 @@ index: 3
 
 From Point A to Point B generates fictional accounts of real trips taken by real people that exist in public data sets.
 
-![screenshot of app that shows a google street view snapshot on the top half, and a generated route on the bottom half]({{ site.baseurl }}/{{ page.img }})
+![installation view of artwork]({{ site.baseurl }}/{{ page.img }})
 
 ### About
 
