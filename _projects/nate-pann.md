@@ -4,7 +4,7 @@ title: Nate Pann RNN
 img: "assets/img/portfolio/nate-pann-rnn.png"
 thumbnail: "assets/img/thumbnails/nate-pann-rnn.png"
 date: 2017-06-15
-tags: [machine learning, work in progress, development]
+tags: [machine learning, development]
 index: 4
 ---
 
@@ -21,7 +21,9 @@ I set up Insik Kim's [kor-char-rnn-tensorflow](https://github.com/insikk/kor-cha
 
 Using the trained models (early-epoch model for main content), I set up a script that generates a title and a content; for titles, filter out sentences that come directly from the training set; parses the generated text so each one begins and ends with a more or less complete sentence; generates an html file styled to look similar to Nate Pann, but with a different logo that signals its fakeness; exports screenshots, which is a common way these postings are shared on Twitter; and runs a bot that posts a tweet everyday with said images attached.
 
-The result is the [Nate Pann RNN](https://twitter.com/pann_rnn) Twitter bot, and I'm liking the results so far. The main text generation is rather incoherent, but I expect to see better results once the training on content is complete.
+The result is the [Nate Pann RNN](https://twitter.com/pann_rnn) Twitter bot.
+
+<!--, and I'm liking the results so far. The main text generation is rather incoherent, but I expect to see better results once the training on content is complete.
 
 #### previously: 
 
@@ -132,3 +134,4 @@ n 값은 4입니다.
 자료 형식을 문자열 대신 형태소로 바꾸니 더 문장 같은 게 나오기 시작했습니다. 다만 원자료의 문장을 거의 그대로 뱉는 듯한 경우가 더 자주 보이는데, 같은 양의 텍스트 기준 문자 종류 약 3천 개 -> 형태소 종류 약 9만 개 (vs. 원자료는 약 1만9천 건뿐) 로 늘어난 만큼, 주어진 형태소 다음에 올 수 있는 선택지가 줄어들어서 그런 듯.
 
 [소스 코드](https://github.com/achimkoh/text-generation/blob/master/natepann_analysis.ipynb)
+-->
