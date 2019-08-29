@@ -2,7 +2,7 @@
 baseurl: ""
 url: "https://scalarvectortensor.net"
 title: Koh Achim # site's title
-description: "digital art, music, machine learning, and the web" # used by search engines
+description: "machine learning, digital culture, and the infrastructure of knowledge production" # used by search engines
 
 # THEME-SPECIFIC CONFIGURATION
 theme_settings:
@@ -24,21 +24,11 @@ theme_settings:
   # Icons
   rss: true  # Make sure you created a feed.xml with feed.xml layout
   email_address: # Full email address, e.g. "sam@example.com"
-  behance:
-  bitbucket:
-  dribbble:
-  facebook:
-  flickr:
-  gitlab:
   github: "achimkoh"
-  google_plus:
   instagram:
   keybase:
   linkedin:  # Full URL
-  pinterest:
-  reddit:
   soundcloud:
-  stack_exchange:  # Full URL
   steam:
   tumblr:
   twitter: "achimkoh" # "twitter username"
@@ -46,19 +36,6 @@ theme_settings:
   wordpress:
   youtube:
   arena: "achim-koh"
-  
-  # Sharing options
-  share_buttons:
-    facebook: 
-    twitter: 
-    google_plus: 
-    tumblr:
-    pinterest:
-    pocket:
-    reddit: 
-    linkedin:
-    wordpress:
-    email: 
 
   # Scripts / Features 
   google_analytics: # Tracking ID, e.g. "UA-000000-01"
@@ -114,6 +91,6 @@ highlighter: rouge
 sass:
   sass_dir: _sass
   style: :compressed
-plugins: [jekyll-paginate, jekyll-seo-tag]
+plugins: [jekyll-paginate, jekyll-seo-tag, jekyll-admin]
 #theme: type-on-strap # Uncomment if using the theme as a jekyll theme gem
 exclude: ["Gemfile", "Gemfile.lock", "type-on-strap.gemspec", "*.gem", "LICENSE", "README.md", "screenshot.png", "package.json", "node_modules", "gulpfile.js"]
