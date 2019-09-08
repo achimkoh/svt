@@ -1,14 +1,18 @@
 ---
 title: Machine Learning (Pratt SI Fall 19)
 layout: post
-thumbnail: assets/img/thumbnails/giphy-neuralnet-9EvzNG9HAVc64.webp
+thumbnail: assets/img/thumbnails/giphy-neuralnet.gif
 date: '2019-09-02 20:00:00'
 tags:
 - machine learning
 - teaching
 ---
 
-[PDF Link](/assets/machine_learning_info697-3_fall2019_syllabus.pdf)  
+<span style="color: #767676"><small>(thumbnail image via [GIPHY](https://media.giphy.com/media/9EvzNG9HAVc64/giphy.gif))</small></span>
+
+[Additional Resources on Are.na](https://www.are.na/achim-koh/machine-learning-fall-2019)
+
+[Syllabus in PDF form](/assets/machine_learning_info697-3_fall2019_syllabus.pdf)  
 Current as of August 26, 2019.
 
 Pratt Institute School of Information  
