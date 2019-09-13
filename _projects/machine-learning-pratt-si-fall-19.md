@@ -158,8 +158,7 @@ Lab: Project workshop
 
 Readings:
 - Patrick Hebron, “Rethinking Design Tools in the Age of Machine Learning”
-[https://medium.com/artists-and-machine-intelligence/rethinking-design-tools-in-the-age-of-](https://medium.com/artists-and-machine-intelligence/rethinking-design-tools-in-the-age-of-)
-machine-learning-369f3f07ab6c
+[https://medium.com/artists-and-machine-intelligence/rethinking-design-tools-in-the-age-of-machine-learning-369f3f07ab6c](https://medium.com/artists-and-machine-intelligence/rethinking-design-tools-in-the-age-of-machine-learning-369f3f07ab6c)
 - Shan Carter and Michael Nielsen, “Using Artificial Intelligence to Augment Human Intelligence” [https://distill.pub/2017/aia/](https://distill.pub/2017/aia/)
 - Shannon Mattern, “The Ethics of Automating Design” [https://wordsinspace.net/shannon/2019/02/13/the-ethics-of-automating-design/](https://wordsinspace.net/shannon/2019/02/13/the-ethics-of-automating-design/)
 
