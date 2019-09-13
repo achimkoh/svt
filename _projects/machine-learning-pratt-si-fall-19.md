@@ -140,8 +140,7 @@ Lab: Introduction to TensorFlow
 **Week 9 - 10/22: Neural networks continued; bias**
 
 Readings:
-- Alex Galloway, “Are Algorithms Biased?” [http://cultureandcommunication.org/galloway/are-](http://cultureandcommunication.org/galloway/are-)
-algorithms-biased
+- Alex Galloway, “Are Algorithms Biased?” [http://cultureandcommunication.org/galloway/are-algorithms-biased](http://cultureandcommunication.org/galloway/are-algorithms-biased)
 - Blaise Agüera y Arcas, Margaret Mitchell and Alexander Todorov, “Physiognomy’s New Clothes” [https://medium.com/@blaisea/physiognomys-new-clothes-f2d4b59fdd6a](https://medium.com/@blaisea/physiognomys-new-clothes-f2d4b59fdd6a)
 - Diana ben-Aaron, “Weizenbaum examines computers and society” [http://tech.mit.edu/V105/N16/weisen.16n.html](http://tech.mit.edu/V105/N16/weisen.16n.html)
 - Julia Angwin et al., “Machine Bias” [https://www.propublica.org/article/machine-bias-risk-assessments-in-criminal-sentencing](https://www.propublica.org/article/machine-bias-risk-assessments-in-criminal-sentencing)
@@ -174,12 +173,11 @@ Lab: Introduction to Runway ML Guest Speaker: TBD
 **Week 12 - 11/12: Machine learning ecosystem; corporate infrastructure**
 
 Readings:
-- Abeba Birhane, “The Algorithmic Colonization of Africa” [https://reallifemag.com/the-algorithmic-](https://reallifemag.com/the-algorithmic-)
-colonization-of-africa/
-- Katharine Schwab, “The Dead-Serious Strategy Behind Google’s Silly AI Experiments” [https://www.fastcompany.com/90152774/the-dead-serious-strategy-behind-googles-silly-ai- experiments](https://www.fastcompany.com/90152774/the-dead-serious-strategy-behind-googles-silly-ai- experiments)
+- Abeba Birhane, “The Algorithmic Colonization of Africa” [https://reallifemag.com/the-algorithmic-colonization-of-africa/](https://reallifemag.com/the-algorithmic-colonization-of-africa/)
+- Katharine Schwab, “The Dead-Serious Strategy Behind Google’s Silly AI Experiments” [https://www.fastcompany.com/90152774/the-dead-serious-strategy-behind-googles-silly-ai-experiments](https://www.fastcompany.com/90152774/the-dead-serious-strategy-behind-googles-silly-ai-experiments)
 - Kyle Wiggers, “AI classifies people’s emotions from the way they walk” [https://venturebeat.com/2019/07/01/ai-classifies-peoples-emotions-from-the-way-they-walk/](https://venturebeat.com/2019/07/01/ai-classifies-peoples-emotions-from-the-way-they-walk/)
 - Wiggers, “AI predicts whether you’ll return an item before you buy it” [https://venturebeat.com/2019/07/01/ai-predicts-whether-youll-return-an-item-before-you-buy-it/](https://venturebeat.com/2019/07/01/ai-predicts-whether-youll-return-an-item-before-you-buy-it/)
-- Mark Bergen, “Google Wants to Train Other Companies to Use Its AI Tools” [http://web.archive.org/web/20171101212341/https://www.bloomberg.com/news/articles/2017-10- 19/google-wants-to-train-other-companies-to-use-its-ai-tools](http://web.archive.org/web/20171101212341/https://www.bloomberg.com/news/articles/2017-10- 19/google-wants-to-train-other-companies-to-use-its-ai-tools)
+- Mark Bergen, “Google Wants to Train Other Companies to Use Its AI Tools” [http://web.archive.org/web/20171101212341/https://www.bloomberg.com/news/articles/2017-10-19/google-wants-to-train-other-companies-to-use-its-ai-tools](http://web.archive.org/web/20171101212341/https://www.bloomberg.com/news/articles/2017-10-19/google-wants-to-train-other-companies-to-use-its-ai-tools)
 - M.C. Elish and Tim Hwang, _An AI Pattern Language_, [https://datasociety.net/pubs/ia/AI_Pattern_Language.pdf](https://datasociety.net/pubs/ia/AI_Pattern_Language.pdf)
 - Shana Lynch, “Andrew Ng: Why AI Is the New Electricity” [https://www.gsb.stanford.edu/insights/andrew-ng-why-ai-new-electricity](https://www.gsb.stanford.edu/insights/andrew-ng-why-ai-new-electricity)
 
