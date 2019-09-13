@@ -1,10 +1,11 @@
 ---
-layout: post
 title: Translations and Editing
-img: "assets/img/thumbnails/translate.png"
-thumbnail: "assets/img/thumbnails/translate.png"
+layout: post
+img: assets/img/thumbnails/translate.png
+thumbnail: assets/img/thumbnails/translate.png
 index: 18
-tags: [translation]
+tags:
+- translation
 ---
 
 I work in English, French, and Korean for publications, art exhibitions, and technical projects, and more. I especially enjoy working with texts that involve knowledge of art and critical theory, digital technology, and music.
@@ -12,6 +13,20 @@ I work in English, French, and Korean for publications, art exhibitions, and tec
 Selected works:
 
 __Translations 번역 작업__
+
+H.G. 마스터스. (2018). "날것의 자율성". For Ha Chong-Hyun's solo exhibition at Kukje Gallery Busan. Upcoming.
+
+안휘경. (2018). "실험정신: 단색화 이전, 1967년-74년 사이의 하종현". For Ha Chong-Hyun's solo exhibition at Kukje Gallery Busan. Upcoming.
+
+Yoon, Heijeong. "Landscapes from an Age of Purity." Exhibition review for Ugo Rondinone's _earthing_ at Kukje Gallery.
+
+Beck, Jeesook. "From Korea with Love." Essay on Yang Haegue, translated for Art Gallery of Ontario. Upcoming.
+
+Min, Guhong. "On introducing your company." Interview. _[The Creative Independent](https://thecreativeindependent.com/people/editor-and-ceo-min-guhong-on-introducing-your-company/)_, 2019.
+
+Beck, Jeesook. "(Public) Art of Damage." _[Kim Yong Ik](https://www.cahiersdart.com/news/2018/march-2018/kim-yong-ik-untitled-utopias)_. Paris: Editions Cahiers D'Art, 2018.
+
+Boulvain, Thibault. "In the Disorder of the World." _From Vietnam to Berlin_. Gwangju: Asia Culture Center, 2018.
 
 Beck, Jeesook. "Caressing The Skin of History." _[Korea Artist Prize 2017](http://koreaartistprize.org/en/)_. Seoul: National Museum of Modern and Contemporary Art, 2017.
 
