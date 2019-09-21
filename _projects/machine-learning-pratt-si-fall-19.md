@@ -1,7 +1,7 @@
 ---
 title: Machine Learning (Pratt SI Fall 19)
 layout: post
-thumbnail: assets/img/thumbnails/giphy-neuralnet.gif
+thumbnail: assets/img/thumbnails/xkcd_machine_learning_cropped.png
 date: '2019-09-02 20:00:00'
 tags:
 - machine learning
@@ -270,4 +270,6 @@ A detailed rubric for the project and presentation will be distributed separatel
 - Final project 30%
 - Presentation 10%
 
-<span style="color: #767676"><small>(thumbnail image via [GIPHY](https://media.giphy.com/media/9EvzNG9HAVc64/giphy.gif))</small></span>
+<span style="color: #767676"><small>(thumbnail image via [xkcd](https://xkcd.com/1838/))
+<!--(thumbnail image via [GIPHY](https://media.giphy.com/media/9EvzNG9HAVc64/giphy.gif))-->
+</small></span> 
