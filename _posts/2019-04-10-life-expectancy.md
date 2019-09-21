@@ -1,8 +1,9 @@
 ---
-layout: post
 title: 기대수명 Life Expectancy
-img: "assets/img/life-expectancy.png"
+layout: post
+img: assets/img/life-expectancy.png
 date: April 10, 2019
+published: false
 ---
 
 ![partial screenshot of life table]({{ site.baseurl }}/{{ page.img }})
