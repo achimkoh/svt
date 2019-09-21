@@ -47,6 +47,8 @@ By the end of the course, students will be able to:
 ## Course Schedule and Readings:
 **Week 1 - 8/27: Introduction**
 
+Class overview; [Introduction to machine learning](/2019/09/21/classroom-exercise-introduction-to-machine-learning.html)
+
 Lab: Getting started with Python
 
 **Week 2 - 9/3: Machine learning, data, programming**
