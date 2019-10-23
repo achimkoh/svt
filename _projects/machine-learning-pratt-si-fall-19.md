@@ -147,7 +147,11 @@ Readings:
 - Diana ben-Aaron, “Weizenbaum examines computers and society” [http://tech.mit.edu/V105/N16/weisen.16n.html](http://tech.mit.edu/V105/N16/weisen.16n.html)
 - Julia Angwin et al., “Machine Bias” [https://www.propublica.org/article/machine-bias-risk-assessments-in-criminal-sentencing](https://www.propublica.org/article/machine-bias-risk-assessments-in-criminal-sentencing)
 
-Lab: TensorFlow continued Guest Speaker: TBD
+Supplemental Material:
+- Karen Hao and Jonathan Stray, "Can you make AI fairer than a judge? Play our courtroom algorithm game" [https://www.technologyreview.com/s/613508/ai-fairer-than-judge-criminal-risk-assessment-algorithm](https://www.technologyreview.com/s/613508/ai-fairer-than-judge-criminal-risk-assessment-algorithm)
+ 
+Lab: TensorFlow continued  
+Guest Speaker: TBD
 
 **Week 10 - 10/29: Machine learning workflow + project workshop**
 
@@ -169,7 +173,8 @@ Supplemental Material:
 Creativity” [https://medium.com/@creativeai/creativeai-9d4b2346faf3](https://medium.com/@creativeai/creativeai-9d4b2346faf3)
 - Wekinator by Rebecca Fiebrink [http://www.wekinator.org/](http://www.wekinator.org/)
 
-Lab: Introduction to Runway ML Guest Speaker: TBD
+Lab: Introduction to Runway ML  
+Guest Speaker: TBD
 
 **Week 12 - 11/12: Machine learning ecosystem; corporate infrastructure**
 
@@ -272,4 +277,4 @@ A detailed rubric for the project and presentation will be distributed separatel
 
 <span style="color: #767676"><small>(thumbnail image via [xkcd](https://xkcd.com/1838/))
 <!--(thumbnail image via [GIPHY](https://media.giphy.com/media/9EvzNG9HAVc64/giphy.gif))-->
-</small></span> 
+</small></span>
