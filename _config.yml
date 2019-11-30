@@ -16,7 +16,7 @@ theme_settings:
 
   # Header and footer text
   header_text: > #two or three lines to describe your site
-    Achim is a <a class='trigger research'>researcher</a>, <a class='trigger development'>programmer</a> and <a class='trigger translation'>translator</a>.<br>His work engages the technopolitics of machine learning, digital art, musical interfaces, and the web.
+    Achim is a <a class='trigger research'>researcher</a>, <a class='trigger development'>programmer</a> and <a class='trigger translation'>translator</a>.<br>His work engages the technopolitics of machine learning, digital culture, the world wide web, and the infrastructure of knowledge production.
   # header_text_feature_image: assets/img/pexels/triangular.jpeg
   footer_text: >
    achim dot koh at gmail dot com
