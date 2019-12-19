@@ -64,7 +64,8 @@ Supplemental Material:
 - Douglas Hofstadter, “The Shallowness of Google Translate”
 [https://www.theatlantic.com/technology/archive/2018/01/the-shallowness-of-google-translate/551570/](https://www.theatlantic.com/technology/archive/2018/01/the-shallowness-of-google-translate/551570/)
 
-Lab: Working with data in Python
+Lab: Working with data in Python  
+Week 2 code: [colab link](https://colab.research.google.com/drive/1HhNGQpcO_1T4Q2gZcQ5NuaJIngl60WOe)
 
 **Week 3 - 9/10: Classification**
 
@@ -89,7 +90,8 @@ Readings:
 - Khan Academy, “Introduction to trend lines” (MOOC module, playlist) [https://www.khanacademy.org/math/statistics-probability/describing-relationships-quantitative-data/introduction-to-trend-lines/v/fitting-a-line-to-data](https://www.khanacademy.org/math/statistics-probability/describing-relationships-quantitative-data/introduction-to-trend-lines/v/fitting-a-line-to-data)
 - Khan Academy, “Least-squares regression equations” (MOOC module, playlist) [https://www.khanacademy.org/math/statistics-probability/describing-relationships-quantitative-data/regression-library/v/introduction-to-residuals-and-least-squares-regression](https://www.khanacademy.org/math/statistics-probability/describing-relationships-quantitative-data/regression-library/v/introduction-to-residuals-and-least-squares-regression)
 
-Lab: Classifiers continued; regression; gradient descent
+Lab: Classifiers continued; regression; gradient descent  
+Week 4 code notebook: [google colab link](https://colab.research.google.com/drive/1Z38Ujro8YfspwifigJuKLnAQdMv37mxA)
 
 **Week 5 - 9/24: Model, software, abstraction; data prep and features; evaluation**
 
@@ -118,7 +120,8 @@ Readings:
 - Example projects and resources: [https://www.are.na/achim-koh/ml-design-ish](https://www.are.na/achim-koh/ml-design-ish)
 (The linked list is a preliminary one and will be updated; also, the examples are meant primarily as inspirations, and do not indicate what the final project should look like)
 
-Lab: Data prep continued
+Lab: Data prep continued  
+Week 6 code: [colab link](https://colab.research.google.com/drive/1mYfG8zH3AwCcx_6mXRW8nK5-czy4wbbv)
 
 **Week 7 - 10/8: NO CLASS - Midterm break**
 
@@ -137,7 +140,8 @@ Readings:
 Supplemental Material:
 - The Coding Train, “10: Neural Networks - The Nature of Code” (YouTube playlist) [https://www.youtube.com/playlist?list=PLRqwX-V7Uu6aCibgK1PTWWu9by6XFdCfh](https://www.youtube.com/playlist?list=PLRqwX-V7Uu6aCibgK1PTWWu9by6XFdCfh)
 
-Lab: Introduction to TensorFlow
+Lab: ~~Introduction to TensorFlow~~Perceptron vs Logistic Regression  
+Week 8 code: [colab link](https://colab.research.google.com/drive/1VXC2qMUeLjHHWO-BdKie73lPut1A3f_U)
 
 **Week 9 - 10/22: Neural networks continued; bias**
 
@@ -150,8 +154,7 @@ Readings:
 Supplemental Material:
 - Karen Hao and Jonathan Stray, "Can you make AI fairer than a judge? Play our courtroom algorithm game" [https://www.technologyreview.com/s/613508/ai-fairer-than-judge-criminal-risk-assessment-algorithm](https://www.technologyreview.com/s/613508/ai-fairer-than-judge-criminal-risk-assessment-algorithm)
  
-Lab: TensorFlow continued  
-Guest Speaker: TBD
+Lab: ~~TensorFlow~~Neural Networks continued  
 
 **Week 10 - 10/29: Machine learning workflow + project workshop**
 
@@ -174,7 +177,7 @@ Creativity” [https://medium.com/@creativeai/creativeai-9d4b2346faf3](https://m
 - Wekinator by Rebecca Fiebrink [http://www.wekinator.org/](http://www.wekinator.org/)
 
 Lab: Introduction to Runway ML  
-Guest Speaker: TBD
+Guest Speaker: Mad Hsia, Adobe Machine Intelligence Design
 
 **Week 12 - 11/12: Machine learning ecosystem; corporate infrastructure**
 
@@ -187,18 +190,22 @@ Readings:
 - M.C. Elish and Tim Hwang, _An AI Pattern Language_, [https://datasociety.net/pubs/ia/AI_Pattern_Language.pdf](https://datasociety.net/pubs/ia/AI_Pattern_Language.pdf)
 - Shana Lynch, “Andrew Ng: Why AI Is the New Electricity” [https://www.gsb.stanford.edu/insights/andrew-ng-why-ai-new-electricity](https://www.gsb.stanford.edu/insights/andrew-ng-why-ai-new-electricity)
 
-Lab: Runway ML continued
+Lab: Runway ML continued  
+Week 12 code: [colab link](https://colab.research.google.com/drive/1uNB8vFjyBIDXIdKLkwHXPYNpENFcsvnS)
 
 **Week 13 - 11/19: Unsupervised learning #1**
 This will be a lab-focused session that introduces unsupervised learning, which is a different ML paradigm than supervised learning (such as classification and regression).
 
-Lab: Clustering algorithms
+Lab: Clustering algorithms  
+Week 13 code: [colab link](https://colab.research.google.com/drive/19-cRCP5tfsLn3HCSPDcW-2ea4B3obibx)  
+Additional Topic: Recursion [colab link](https://colab.research.google.com/drive/1W_JZl6fsQQAGnE94fOsvRW0IEmFyCma8)
 
 **Week 14 - 11/26: Unsupervised learning #2**
 
 Due: Lab assignment #4 (submit by 11/25)
 This will be a lab-focused session that continues on the theme of unsupervised learning. 
-Lab: Dimensionality reduction; visualization
+Lab: Dimensionality reduction; visualization  
+Additional Topic: Objects and Classes [colab link](https://colab.research.google.com/drive/1PKjhPWZXptcmvWJBk86uhIhFd5ZzjDpW)
 
 **Week 15 - 12/3: Labor and machine learning**
 
@@ -213,7 +220,9 @@ Supplemental Material:
 Power in AI_. AI Now Institute. [https://ainowinstitute.org/discriminatingsystems.pdf](https://ainowinstitute.org/discriminatingsystems.pdf)
 - Shannon Mattern, “Maintenance and Care” [https://placesjournal.org/article/maintenance-and-care/](https://placesjournal.org/article/maintenance-and-care/)
 
-Lab: TBD
+Lab: TBD  
+Code: [colab link](https://colab.research.google.com/drive/15CGoJhu6_anxX0Ry-tRZkshzQsOledNO)  
+Make-up class code (t-SNE): [colab link](https://colab.research.google.com/drive/1Y4pAfAo2QX_lf7aS2rnHSbdLvinhQrqK)
 
 **Week 16 - 12/10: Presentations**
 
